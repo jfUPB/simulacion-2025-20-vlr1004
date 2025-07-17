@@ -16,12 +16,15 @@ Es una muestra unica para la pieza que se esta creando donde cada momento sera d
 
 
 ### Actividad 03
-- Qué espero que suceda?
-- Ocurrió lo que esperabas? ¿Por qué crees que sí o por qué crees que no?
-
+- Qué espero que suceda?  
+  Va aumentar las probabilidades de ir a un lado, el color va a cambiar y el tamaño.
+- Ocurrió lo que esperabas? ¿Por qué crees que sí o por qué crees que no?  
+  Algo así, ya que subi la probabilidad de que subiera, pero al cambiar el numero de random, solo subia. Creo que solo parece que sube ya que las probabilidades subieron. Si se cambio los colores. No le cambie el tamaño era donde iniciaba (JAJAJAJAJ)
 
 ### Actividad 04
 - En tus propias palabras cuál es la diferencia entre una distribución uniforme y una no uniforme de números aleatorios.
+La no uniforme al tener una media se hace mas probable que aparezca los numeros/puntos al rededor de esa media, pero existe una probabilidad que tambien estén más alejados.
+En la uniforme, existe un rango que siempre va haber un momento donde los números van a aparecer.
 
 ### Actividad 05
 - Captura de pantalla: 
