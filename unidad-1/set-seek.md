@@ -66,9 +66,62 @@ function draw() {
 
   
 ### Actividad 06
+- Explicación: En el documento hablaban de la busqueda de comida, donde si se vuelve en un mismo lugar varias veces, la busqueda es ineficiente. Por lo que dar saltos más grandes y buscar un momento en el lugar lo hace "mas eficiente". 
 - Código:
-- Enlace:
+
+````
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let walker;
+
+function setup() {
+  createCanvas(640, 240);
+  walker = new Walker();
+  background(255);
+}
+
+function draw() {
+  walker.step();
+  walker.show();
+}
+
+class Walker {
+  constructor() {
+    this.x = width / 2;
+    this.y = height / 2;
+  }
+
+  step() {
+    let angle = random(TWO_PI);
+
+    let stepSize = this.levy();
+    
+    this.x += cos(angle) * stepSize;
+    this.y += sin(angle) * stepSize;
+
+    this.x = constrain(this.x, 0, width);
+    this.y = constrain(this.y, 0, height);
+  }
+
+  levy() {
+    let r = random(1);
+    return 1 / pow(r, 1.5);
+  }
+
+  show() {
+    stroke(0);
+    strokeWeight(2);
+    point(this.x, this.y);
+  }
+}
+````
+
+- Enlace:https://editor.p5js.org/vlr1004/sketches/nBAbZUsUB
 - Captura:
+<img width="1919" height="922" alt="image" src="https://github.com/user-attachments/assets/9437fe15-bb6a-4b3e-8ee2-78b483affe7d" />
+
   
 ### Actividad 07
 - Explica el concepto qué resultados esberabas obtener.
