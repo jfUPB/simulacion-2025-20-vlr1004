@@ -118,13 +118,58 @@ class Walker {
 }
 ````
 
-- Enlace:https://editor.p5js.org/vlr1004/sketches/nBAbZUsUB
+- Enlace: https://editor.p5js.org/vlr1004/sketches/nBAbZUsUB
 - Captura:
 <img width="1919" height="922" alt="image" src="https://github.com/user-attachments/assets/9437fe15-bb6a-4b3e-8ee2-78b483affe7d" />
 
   
 ### Actividad 07
-- Explica el concepto qué resultados esberabas obtener.
+- Explica el concepto qué resultados esberabas obtener: El concepto de Perlin noise, toma el concepto de el movimiento organico de elementos de la naturaleza, bajandole la rudez y la rapidez. Por lo que pensé en el movimiento de sacar lana del ovillo (dato innecesario, realmente fue pensando en la naturaleza de la finca, recorde a mi abuela paterna tejiendo). Pense que iba a ser movimientos circulares pero al toparse con los limites del canva, se colocaba en linea como si fuera una pared, entonces pensé que falle pero lo contrario, el movimiento aunque no rigido de la lana si hubiera chocado contra una pared, si hubiera creado cierto tipo de linea. 
 - Código:
-- Enlace:
+````
+let t = 0;         // Tiempo para el ruido
+let x, y;          // Posición actual
+let path = [];     // Ruta del hilo
+
+function setup() {
+  createCanvas(640, 240);
+  background(255);
+  x = width / 2;
+  y = height / 2;
+}
+
+function draw() {
+  // Guardar la posición actual
+  path.push({ x, y });
+
+  // Dibujar el camino del hilo
+  noFill();
+  stroke(150, 0, 200, 100); // Color tipo lana morada, un poco translúcida
+  strokeWeight(2);
+  beginShape();
+  for (let i = 0; i < path.length; i++) {
+    vertex(path[i].x, path[i].y);
+  }
+  endShape();
+
+  // Calcular dirección suavemente usando Perlin noise
+  let angle = noise(t) * TWO_PI * 2; // Ángulo aleatorio suave
+  let stepSize = 2; // tamaño del paso, como si fuera el largo del hilo
+
+  // Actualizar posición
+  x += cos(angle) * stepSize;
+  y += sin(angle) * stepSize;
+
+  // Limitar al canvas
+  x = constrain(x, 0, width);
+  y = constrain(y, 0, height);
+
+  // Incrementar tiempo para variar el ruido
+  t += 0.01;
+}
+
+````
+- Enlace: https://editor.p5js.org/vlr1004/sketches/H5fzBfjMq
 - Captura:
+<img width="1919" height="808" alt="image" src="https://github.com/user-attachments/assets/c5f4a6bf-2103-49a6-ac09-413c7d30d254" />
+
