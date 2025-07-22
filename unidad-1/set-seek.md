@@ -27,7 +27,43 @@ La no uniforme al tener una media se hace mas probable que aparezca los numeros/
 En la uniforme, existe un rango que siempre va haber un momento donde los números van a aparecer.
 
 ### Actividad 05
-- Captura de pantalla: 
+-Codigo:
+````
+let puntos = [];
+
+function setup() {
+  createCanvas(600, 400);
+  background(255);
+  noStroke();
+}
+
+function draw() {
+  // Genera un punto con distribución normal centrado en el medio del canvas
+  let x = randomGaussian(width / 2, 60); // media = mitad del canvas, desviación = 60
+  let y = randomGaussian(height / 2, 60);
+
+  puntos.push({x, y});
+
+  // Dibujar los puntos
+  fill(100, 100, 255, 50); // Azul translúcido
+  ellipse(x, y, 5, 5);
+
+  // Limita la cantidad de puntos para evitar que se ralentice
+  if (puntos.length > 2000) {
+    puntos.shift();
+    background(255); // Limpia el fondo para evitar saturación
+    for (let p of puntos) {
+      fill(100, 100, 255, 50);
+      ellipse(p.x, p.y, 5, 5);
+    }
+  }
+}
+````
+
+- Link: https://editor.p5js.org/vlr1004/sketches/I3ejPxOeT
+- Captura de pantalla:
+<img width="1917" height="893" alt="image" src="https://github.com/user-attachments/assets/95a889cf-f22f-4f64-8436-02c45a485ee3" />
+
   
 ### Actividad 06
 - Código:
