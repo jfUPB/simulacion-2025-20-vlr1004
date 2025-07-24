@@ -45,8 +45,14 @@ Respuesta: Creo que pensaria en un mini juego de busqueda de comida.
 4. Creatividad: `[ 5 ]` / 5
 5. Obra acorde al concepto: `[ 5 ]` / 5
 
-- Comentarios: Me gusto que haya tomado temas personales para mostrarlos desde la interacción, 
+- Comentarios: Me gusto que haya tomado temas personales para mostrarlos desde la interacción, de ahí viene el arte.
 
----
+
 
 # Actividad 11
+1. Continuar: ¿Qué actividad, ejemplo o explicación de esta unidad te resultó más reveladora o útil para tu aprendizaje? ¿Qué deberíamos mantener sí o sí?: La del ruido perlin, por alguna razón se me hizo muy facil de entenderla, y tener los ejemplos y conceptos de la pagina me ayudaron a entender todo con mayor facilidad.
+2. Dejar de hacer: ¿Hubo alguna actividad o concepto que te pareció redundante, confuso o menos útil? ¿Hay algo que eliminarías o cambiarías por completo?: No
+3. Empezar a hacer: ¿Qué te faltó en esta unidad? ¿Quizás más ejemplos de artistas, más desafíos técnicos, más teoría? ¿Qué idea tienes para hacerla mejor?: Me falto teoria y ejemplos, mayormente los ejemplos los utilizo para comparar lo que hice con lo que ya esta hechos, así de cierta manera confirmo lo que lo que estoy haciendo esta correcto.
+4. Balance Teoría-Práctica: ¿Cómo sentiste el equilibrio entre analizar los ejemplos del texto guía y ponerte a programar tus propios sketches? Explica tu respuesta: Buena, ya que con cada teoria se hizo una practica, por lo que afirmo lo que sabiamos.
+5. Comentario Adicional: ¿Hay algo más que quieras compartir sobre tu experiencia en esta unidad?: No profe, picos.
+
