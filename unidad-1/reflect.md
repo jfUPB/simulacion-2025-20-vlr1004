@@ -37,4 +37,16 @@ Respuesta: Creo que pensaria en un mini juego de busqueda de comida.
 
 
 # Actividad 10
+- Basándote en la rúbrica para la actividad 08 evalúa el trabajo del compañero y escribe un comentario de retroalimentación constructiva. Esto lo harás en tu bitácora de aprendizaje.  
+
+1. Interactiva a tiempo real: `[ 5 ]` / 5
+2. Es una obra generativa: `[ 5 ]` / 5
+3. Combina los tres conceptos: `[ 5 ]` / 5
+4. Creatividad: `[ 5 ]` / 5
+5. Obra acorde al concepto: `[ 5 ]` / 5
+
+- Comentarios: Me gusto que haya tomado temas personales para mostrarlos desde la interacción, 
+
+---
+
 # Actividad 11
