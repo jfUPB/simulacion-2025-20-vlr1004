@@ -8,7 +8,8 @@
   -  Ver2: Hacer una obra simulando un piano pero combirtiendo la escala musical en una transformación visual progresiva, donde cada nota ocupa un lugar dentro de un espectro morfológico: desde las circulos (graves) hasta las estrellas (agudas), pasando por formas intermedias. Utilizando conceptos de Lévy flight (para trayectorias orgánicas), distribucion normal (para posiciones iniciales) y ruido perlin (para animaciones suaves).
 - Código:
   - Ver 1:
-````
+
+```js
 let particles = [];
 
 function setup() {
@@ -119,9 +120,10 @@ function drawStar(radius) {
   }
   endShape(CLOSE);
 }
-````
+```
   - Ver 2:
-````
+
+``` js
 let forms = [];
 const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'q', 'w', 'e', 'r', 't', 'y', 'u'];
 
@@ -223,7 +225,8 @@ class MorphingShape {
   }
 }
 
-````
+```
+
 - Enlace:
   - Ver 1: https://editor.p5js.org/vlr1004/sketches/lHf0Shhuk
   - Ver 2: https://editor.p5js.org/vlr1004/sketches/DXE4xZUqm
