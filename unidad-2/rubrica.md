@@ -117,12 +117,12 @@ Evalúa la respuesta sobre las observaciones de los comportamientos con acelerac
 
 Evalúa la creación de una obra generativa interactiva que utilice Motion 101, vectores y algoritmos de aceleración, incluyendo descripción del concepto, aplicación del marco, algoritmo de aceleración, código, enlace y captura.
 
-> **5 (Completo y Preciso):** La obra es generativa, interactiva en tiempo real, utiliza correctamente Motion 101 y vectores, implementa un algoritmo de aceleración novedoso. La bitácora contiene descripción clara del concepto, explicación de la aplicación de Motion 101, justificación del algoritmo de aceleración, código completo, enlace funcional y captura de pantalla.
-> **4 (Logrado):** La obra funciona correctamente y utiliza los conceptos requeridos, pero la bitácora presenta una omisión menor (falta captura, enlace roto, o explicación superficial de algún concepto) O el algoritmo de aceleración es una variación menor de los analizados en la unidad.
-> **3 (Suficiente):** La obra implementa Motion 101 y vectores correctamente, pero no es completamente interactiva O faltan dos elementos en la bitácora O el algoritmo de aceleración no es novedoso.
-> **2 (En Desarrollo):** La obra no implementa correctamente Motion 101 o no utiliza vectores apropiadamente. La mayoría de los elementos solicitados en la bitácora están ausentes o son incorrectos.
-> **1 (Inicial):** Se entrega una obra que no utiliza los conceptos de la unidad o no cumple con ser generativa e interactiva. Documentación mínima o ausente.
-> **0 (No Realizado):** No se presenta evidencia alguna para el criterio. La sección correspondiente en la bitácora está en blanco o no se entrega.
+> **5 (Completo y Preciso):** La obra es generativa, interactiva en tiempo real, utiliza correctamente Motion 101 y vectores, implementa un algoritmo de aceleración novedoso. La bitácora contiene descripción clara del concepto, explicación de la aplicación de Motion 101, justificación del algoritmo de aceleración, código completo, enlace funcional y captura de pantalla.  
+> **4 (Logrado):** La obra funciona correctamente y utiliza los conceptos requeridos, pero la bitácora presenta una omisión menor (falta captura, enlace roto, o explicación superficial de algún concepto) O el algoritmo de aceleración es una variación menor de los analizados en la unidad.  
+> **3 (Suficiente):** La obra implementa Motion 101 y vectores correctamente, pero no es completamente interactiva O faltan dos elementos en la bitácora O el algoritmo de aceleración no es novedoso.  
+> **2 (En Desarrollo):** La obra no implementa correctamente Motion 101 o no utiliza vectores apropiadamente. La mayoría de los elementos solicitados en la bitácora están ausentes o son incorrectos.  
+> **1 (Inicial):** Se entrega una obra que no utiliza los conceptos de la unidad o no cumple con ser generativa e interactiva. Documentación mínima o ausente.  
+> **0 (No Realizado):** No se presenta evidencia alguna para el criterio. La sección correspondiente en la bitácora está en blanco o no se entrega.  
 
 **Calificación Obtenida:** `[  ]` / 5
 
