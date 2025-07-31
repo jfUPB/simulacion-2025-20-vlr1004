@@ -191,18 +191,18 @@ Por ejemplo, con amt = 0.5, devuelve el punto medio entre los dos vectores y ler
 
 # Actividad 6: Motion 101
 
-- Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.
+- Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.  
 Es un movimiento utilizando vectores, hay dos puntos importantes:
 1. La posición con la velocidad sumada a la velocidad del vectos
-2. Dibujar el objeto en la posición nueva
+2. Dibujar el objeto en la posición nueva  
 Geometricamente se representa en el espacio definido por su posición y la velocidad es otro vector que indica su dirección y que rapidez tiene al moverse; por lo que al sumar estas dos cosas, es como si el objeto siguiera una flecha de la velocidad en cada cuadro.
   
-- ¿Cómo se aplica motion 101 en el ejemplo?
+- ¿Cómo se aplica motion 101 en el ejemplo?  
 El objeto que se utilizaz en motion 101 es 'Mover' porlo que se eplica las propiedades habladas: position y velocity. Para mover el objeto se utiliza update() donde se suma el vector de velocidad. Se utiliza show() para dibujar el el objero, por lo que se utiliza position para ubicarlo en *x* y *y*, ayudado con checEdges() mueven el objeto reapareciendolo en el lado opuesto de la pantalla cuando llega a un borde, como si el espacio fuera un mundo cíclico y draw() para llamar los anteriores y mostrarlos en orden.
   
 # Actividad 7
 
 ## La meta de la programación del movimiento es llegar a tener un algoritmo para calcular la aceleración y luego dejar que el efecto de goteo (?) haga su magia
 
-- ¿Qué observaste cuando usas cada una de las aceleraciones propuestas?
+- ¿Qué observaste cuando usas cada una de las aceleraciones propuestas?  
 Los pequeños cambios al calcular la aceleración, ya sea comparandolas entre si o diferentes datos en las mismas; sus trayectorias eran diferentes, no se movian de la misma manera. La constantes da un movimiento recto, estable y predecible, el aleatio es descontrolado y brusco, y el del mouse es suave ya que es guiado por el movimiento del mouse.
