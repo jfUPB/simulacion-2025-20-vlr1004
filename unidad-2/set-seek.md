@@ -124,50 +124,39 @@ Normalize sirve cuando se quiere usar un vector solo para indicar dirección, en
 
 - Codigo:
 ```
-let t = 0;
-let dir = 1;
-
 function setup() {
-  createCanvas(400, 400);
+    createCanvas(200, 200);
 }
 
 function draw() {
-  background(200);
+    background(200);
 
-  let origin = createVector(50, 50);
-  let v1 = createVector(300, 0);      // Vector rojo
-  let v2 = createVector(0, 300);      // Vector azul
-
-  // Vector verde: de v1 a v2
-  let vecVerde = p5.Vector.sub(v2, v1);
-
-  // Punto interpolado entre v1 y v2
-  let interpolado = p5.Vector.lerp(v1, v2, t);
-
-  drawArrow(origin, v1, 'red');                          // Vector rojo
-  drawArrow(origin, v2, 'blue');                         // Vector azul
-  drawArrow(origin.copy().add(v1), vecVerde, 'green');   // Vector verde
-  drawArrow(origin, interpolado, 'purple');              // Vector púrpura animado
-
-  // Animar t entre 0 y 1
-  t += 0.01 * dir;
-  if (t > 1 || t < 0) {
-    dir *= -1;
-  }
+    let v0 = createVector(50, 50);
+    let v1 = createVector(100, 0);
+    let v2 = createVector(0, 100);
+    let tiempo = (sin(frameCount*0.02)+1)/2;
+    let v3 = p5.Vector.lerp(v1, v2, tiempo);
+    let ColorRamp = lerpColor('red','blue', tiempo);
+    let PuntaRoja = p5.Vector.add(v0,v1);
+    let PuntaAzul = p5.Vector.sub(v2,v1);
+    drawArrow(v0, v1, 'red');
+    drawArrow(v0, v2, 'blue');
+    drawArrow(v0, v3, ColorRamp);
+    drawArrow(PuntaRoja,PuntaAzul,'rgb(0,255,44)');
 }
 
 function drawArrow(base, vec, myColor) {
-  push();
-  stroke(myColor);
-  strokeWeight(3);
-  fill(myColor);
-  translate(base.x, base.y);
-  line(0, 0, vec.x, vec.y);
-  rotate(vec.heading());
-  let arrowSize = 7;
-  translate(vec.mag() - arrowSize, 0);
-  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-  pop();
+    push();
+    stroke(myColor);
+    strokeWeight(3);
+    fill(myColor);
+    translate(base.x, base.y);
+    line(0, 0, vec.x, vec.y);
+    rotate(vec.heading());
+    let arrowSize = 7;
+    translate(vec.mag() - arrowSize, 0);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
 }
 ```
 - ¿Cómo funciona lerp() y lerpColor().    
