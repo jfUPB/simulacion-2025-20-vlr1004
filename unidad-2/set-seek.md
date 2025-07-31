@@ -91,19 +91,111 @@ console.log(miObjeto.valor);  // Imprime 10, sí cambia
 
 - ¿Qué tipo de paso se está realizando en el código?  
 Estoy utilizando un p5.Vector, que es un objeto. Por lo tanto, al pasar posicion a la función playingVector, estás trabajando con paso por referencia.Eso significa que cuando modificas v.x y v.y dentro de la función, estás modificando directamente el objeto original posicion.
+
+
 - ¿Qué aprendiste?  
 Aprendí la diferencia entre paso por valor y paso por referencia en JavaScript. Entendí que los valores primitivos se copian al pasarse a una función, mientras que los objetos se comparten mediante referencias. Esto me permite modificar objetos dentro de funciones y que esos cambios se reflejen afuera. En mi código, usé un vector (p5.Vector), que se pasó por referencia, por lo que los cambios realizados dentro de la función afectaron el valor original.
   
 # Actividad 4
-- ¿Para qué sirve el método mag()? Nota que hay otro método llamado magSq(). ¿Cuál es la diferencia entre ambos? ¿Cuál es más eficiente?
-- ¿Para qué sirve el método normalize()?
+- ¿Para qué sirve el método mag()? Nota que hay otro método llamado magSq(). ¿Cuál es la diferencia entre ambos? ¿Cuál es más eficiente?  
+El metodo mag() calcula el tamaño del vector (la magnitud). El devuelve la magnitud real utilizando raiz cuadrada y magSq() da el cuadrado de la magnitud. EN teoria, magSq() es más eficiente porque evita utilizar Mth.sqrt() que es mas dificil de procesarla.
+
+
+- ¿Para qué sirve el método normalize()?  
+Sirve cuando se quiere usar un vector solo para indicar dirección, entonces es util cuando se necesita encontrar o utilizar la dirección del vector.
+
 - Te encuentras con un periodista en la calle y te pregunta ¿Para qué sirve el método dot()? ¿Qué le responderías en un frase?
-- El método dot() tiene una versión estática y una de instancia. ¿Cuál es la diferencia entre ambas?
-- Ahora el mismo periodista curioso de antes te pregunta si le puedes dar una intuición geométrica acerca del producto cruz. Entonces te pregunta ¿Cuál es la interpretación geométrica del producto cruz de dos vectores? Tu respuesta debe incluir qué pasa con la orientación y la magnitud del vector resultante.
-- ¿Para que te puede servir el método dist()?
-- ¿Para qué sirven los métodos normalize() y limit()?
+Mide que tanto dos vectores apuntan en la misma dirección, y se usa para calcular angulos o proyecciones entre ellos.
 
   
+- El método dot() tiene una versión estática y una de instancia. ¿Cuál es la diferencia entre ambas?  
+La versión de instancia calcula el producto punto entre dos vectores y la estatica hace lo mismo pero sin necesitar que uno sea el objeto principal, lo que le permite trabajar directamente con dos vectores extrenos.
+
+- Ahora el mismo periodista curioso de antes te pregunta si le puedes dar una intuición geométrica acerca del producto cruz. Entonces te pregunta ¿Cuál es la interpretación geométrica del producto cruz de dos vectores? Tu respuesta debe incluir qué pasa con la orientación y la magnitud del vector resultante.  
+Genera un nuevo vector perpendicular, difinido por los dos vectores originales. Su magnitud representa el area de la figura formada por los dos vectores y su orientacion apunta hacia arriba o abajo según el orden de los vectores.
+
+- ¿Para que te puede servir el método dist()?
+Calcula la distancia entre dos vectores, por lo que con el se puede detectar sus colisiones, la aproximacion entre dos objetos (vectores) o calcular trayectorias.
+
+- ¿Para qué sirven los métodos normalize() y limit()?
+Normalize sirve cuando se quiere usar un vector solo para indicar dirección, entonces es util cuando se necesita encontrar o utilizar la dirección del vector y limit() limita el tamaño del vector, por lo que si se busca limitar la velocidad máxima de un objeto en movimiento se puede utilizar.
+  
 # Actividad 5
+
+- Codigo:
+```
+let t = 0;
+let dir = 1;
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(200);
+
+  let origin = createVector(50, 50);
+  let v1 = createVector(300, 0);      // Vector rojo
+  let v2 = createVector(0, 300);      // Vector azul
+
+  // Vector verde: de v1 a v2
+  let vecVerde = p5.Vector.sub(v2, v1);
+
+  // Punto interpolado entre v1 y v2
+  let interpolado = p5.Vector.lerp(v1, v2, t);
+
+  drawArrow(origin, v1, 'red');                          // Vector rojo
+  drawArrow(origin, v2, 'blue');                         // Vector azul
+  drawArrow(origin.copy().add(v1), vecVerde, 'green');   // Vector verde
+  drawArrow(origin, interpolado, 'purple');              // Vector púrpura animado
+
+  // Animar t entre 0 y 1
+  t += 0.01 * dir;
+  if (t > 1 || t < 0) {
+    dir *= -1;
+  }
+}
+
+function drawArrow(base, vec, myColor) {
+  push();
+  stroke(myColor);
+  strokeWeight(3);
+  fill(myColor);
+  translate(base.x, base.y);
+  line(0, 0, vec.x, vec.y);
+  rotate(vec.heading());
+  let arrowSize = 7;
+  translate(vec.mag() - arrowSize, 0);
+  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+  pop();
+}
+```
+- ¿Cómo funciona lerp() y lerpColor().    
+  Lerp() devuelve un nuevo vector que está a una fracción amt del camino desde v1 hasta v2.
+Por ejemplo, con amt = 0.5, devuelve el punto medio entre los dos vectores y lerpColor(c1, c2, amt) realiza lo mismo pero con colores: mezcla el color c1 con el color c2 según un valor entre 0 (solo c1) y 1 (solo c2). Es útil para crear transiciones suaves de color.
+
+
+- ¿Cómo se dibuja una flecha usando drawArrow()?
+1. **push() y pop():** aíslan los cambios de transformación para que no afecten otros dibujos.
+
+2. **translate(base.x, base.y):** mueve el punto de inicio de la flecha a la posición base.
+
+3. **line(0, 0, vec.x, vec.y):** dibuja el cuerpo de la flecha desde el origen (0,0) hasta el punto final del vector.
+
+4. **rotate(vec.heading()):** rota el sistema de coordenadas hacia la dirección del vector.
+
+5. **translate(vec.mag() - arrowSize, 0):** se mueve al extremo del vector para dibujar la punta.
+
+6. **triangle(...):** dibuja la cabeza de la flecha como un pequeño triángulo.
+
+
 # Actividad 6
+
+- Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.
+
+  
+- ¿Cómo se aplica motion 101 en el ejemplo?
+
+  
 # Actividad 7
+- ¿Qué observaste cuando usas cada una de las aceleraciones propuestas?
