@@ -201,4 +201,8 @@ Geometricamente se representa en el espacio definido por su posición y la veloc
 El objeto que se utilizaz en motion 101 es 'Mover' porlo que se eplica las propiedades habladas: position y velocity. Para mover el objeto se utiliza update() donde se suma el vector de velocidad. Se utiliza show() para dibujar el el objero, por lo que se utiliza position para ubicarlo en *x* y *y*, ayudado con checEdges() mueven el objeto reapareciendolo en el lado opuesto de la pantalla cuando llega a un borde, como si el espacio fuera un mundo cíclico y draw() para llamar los anteriores y mostrarlos en orden.
   
 # Actividad 7
+
+## La meta de la programación del movimiento es llegar a tener un algoritmo para calcular la aceleración y luego dejar que el efecto de goteo (?) haga su magia
+
 - ¿Qué observaste cuando usas cada una de las aceleraciones propuestas?
+Los pequeños cambios al calcular la aceleración, ya sea comparandolas entre si o diferentes datos en las mismas; sus trayectorias eran diferentes, no se movian de la misma manera. La constantes da un movimiento recto, estable y predecible, el aleatio es descontrolado y brusco, y el del mouse es suave ya que es guiado por el movimiento del mouse.
