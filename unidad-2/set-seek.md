@@ -180,6 +180,14 @@ Por ejemplo, con amt = 0.5, devuelve el punto medio entre los dos vectores y ler
 
 # Actividad 6: Motion 101
 
+Esto seria motion 101
+```
+ this.velocity.add(this.acceleration);
+    this.velocity.limit(this.topSpeed);
+    this.position.add(this.velocity);
+```
+
+
 - Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.  
 Es un movimiento utilizando vectores, hay dos puntos importantes:
 1. La posición con la velocidad sumada a la velocidad del vectos
