@@ -134,9 +134,9 @@ function draw() {
     let v0 = createVector(50, 50);
     let v1 = createVector(200, 0); //vector rojo
     let v2 = createVector(0, 200); //vector azul
-    let tiempo = (sin(frameCount*0.02)+1)/2;
+    let tiempo = (sin(frameCount*0.02)+1)/2; //para cambiar el color mientras se mueve
     let v3 = p5.Vector.lerp(v1, v2, tiempo);
-    let ColorRamp = lerpColor('red','blue', tiempo);
+    let ColorRamp = lerpColor('red','blue', tiempo); //cambia el color del vector
     let PuntaRoja = p5.Vector.add(v0,v1);
     let PuntaAzul = p5.Vector.sub(v2,v1);
     drawArrow(v0, v1, 'red');
