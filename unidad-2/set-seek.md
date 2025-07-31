@@ -189,13 +189,16 @@ Por ejemplo, con amt = 0.5, devuelve el punto medio entre los dos vectores y ler
 6. **triangle(...):** dibuja la cabeza de la flecha como un pequeño triángulo.
 
 
-# Actividad 6
+# Actividad 6: Motion 101
 
 - Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.
-
+Es un movimiento utilizando vectores, hay dos puntos importantes:
+1. La posición con la velocidad sumada a la velocidad del vectos
+2. Dibujar el objeto en la posición nueva
+Geometricamente se representa en el espacio definido por su posición y la velocidad es otro vector que indica su dirección y que rapidez tiene al moverse; por lo que al sumar estas dos cosas, es como si el objeto siguiera una flecha de la velocidad en cada cuadro.
   
 - ¿Cómo se aplica motion 101 en el ejemplo?
-
+El objeto que se utilizaz en motion 101 es 'Mover' porlo que se eplica las propiedades habladas: position y velocity. Para mover el objeto se utiliza update() donde se suma el vector de velocidad. Se utiliza show() para dibujar el el objero, por lo que se utiliza position para ubicarlo en *x* y *y*, ayudado con checEdges() mueven el objeto reapareciendolo en el lado opuesto de la pantalla cuando llega a un borde, como si el espacio fuera un mundo cíclico y draw() para llamar los anteriores y mostrarlos en orden.
   
 # Actividad 7
 - ¿Qué observaste cuando usas cada una de las aceleraciones propuestas?
