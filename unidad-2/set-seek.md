@@ -11,7 +11,8 @@
 - ¿Qué tuviste que hacer para hacer la conversión propuesta?
       Se crea el vector para guardar la posición y uno para el movimiento/caminata, por lo que para que se mueva se añade el `add` para que pueda caminar.
 - Muestra el código que utilizaste para resolver el ejercicio.
-```
+
+``` js
 let walker;
 
 function setup() {
@@ -203,3 +204,4 @@ El objeto que se utilizaz en motion 101 es 'Mover' porlo que se eplica las propi
 
 - ¿Qué observaste cuando usas cada una de las aceleraciones propuestas?  
 Los pequeños cambios al calcular la aceleración, ya sea comparandolas entre si o diferentes datos en las mismas; sus trayectorias eran diferentes, no se movian de la misma manera. La constantes da un movimiento recto, estable y predecible, el aleatio es descontrolado y brusco, y el del mouse es suave ya que es guiado por el movimiento del mouse.
+
