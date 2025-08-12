@@ -41,9 +41,10 @@ Me gustaría experimentar con un algoritmo de aceleración basado en ondas de ch
 1. Intercambia la URL de tu bitácora con un compañero: https://github.com/jfUPB/simulacion-2025-20-saragaravitop/blob/unidad2/reflect/unidad-2/apply.md
 2. Analiza su Actividad 08. Ejecuta su sketch, lee su concepto y revisa su código.
 3. En tu propia bitácora, escribe una retroalimentación constructiva para tu compañero, evaluando:
-  - Claridad del Concepto: ¿La obra visual refleja la intención descrita?
-  - Implementación Técnica: ¿Se aplica correctamente el marco MOTION 101? ¿Es el código legible y está bien estructurado?
-  - Creatividad del Algoritmo: ¿El algoritmo de aceleración es interesante y genera un comportamiento único?
-  - Calidad de la Interactividad: ¿La interacción es intuitiva y tiene un impacto significativo en la obra?
+  - Claridad del Concepto: ¿La obra visual refleja la intención descrita?: si me gusta mucho porque puedo ver el caos que habla dentro de la descripción, me gusta los colores y la forma en la que se mueven las particulas, lo unico que no me gusta es que llega un punto en el que no muchas están cerca.
+  - Implementación Técnica: ¿Se aplica correctamente el marco MOTION 101? ¿Es el código legible y está bien estructurado?: Si, implementa bien la aceleración, velocidad y su posción implementandolos con vectores y tambien lo resetea en los casos donde se acerca el mouse al mover
+  - Creatividad del Algoritmo: ¿El algoritmo de aceleración es interesante y genera un comportamiento único?: Si, me parecio interesante el modo en el que se mueven, en lugar de ir directo, las partículas se mueven en dirección perpendicular, creando trayectorias curvas y cambia de una manera mas organica creo que es ruido perlin.
+  - Calidad de la Interactividad: ¿La interacción es intuitiva y tiene un impacto significativo en la obra?: Si ya que al mover el mouse puede uno ser parte de la obra y al ser con el mouse si es intuitiva. 
 4. Conversa con tu compañero sobre tu feedback.
+
 
