@@ -180,8 +180,8 @@ function draw() {
 
   // Resistencia del aire/fluidos
   let c = 0.1;
-  let speed = globo.velocity.mag();
-  let dragMagnitude = c * speed * speed;
+  let speed2 = globo.velocity.mag();
+  let dragMagnitude = c * speed2 * speed2;
   let drag = globo.velocity.copy();
   drag.mult(-1);
   drag.setMag(dragMagnitude);
@@ -232,13 +232,13 @@ class Gota {
 
   reset() {
     this.x = random(width);
-    this.y = random(-200, -10);
+    this.y = random(height, height + 200);
     this.size = random(3, 6);
     this.speed = random(1, 3);
   }
 
   update() {
-    this.y += this.speed;
+    this.y -= this.speed;
     if (this.y < -10) {
       this.reset();
     }
@@ -250,7 +250,6 @@ class Gota {
     ellipse(this.x, this.y, this.size, this.size * 1.5);
   }
 }
-
 
 
 
@@ -396,6 +395,7 @@ class Manzana {
 
 ## 5. Captura una imagen representativa de tu ejemplo.
 <img width="1863" height="663" alt="image" src="https://github.com/user-attachments/assets/310cf9e8-52c8-448c-8957-ef442c98e169" />
+
 
 
 
