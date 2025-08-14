@@ -138,7 +138,7 @@ class Carrito {
 - Si el viento es fuerte, el globo sube más rápido, pero la resistencia también aumenta.
 
 ## 2. Conceptualmente cómo se relaciona la fuerza con la obra generativa:  
-Es la resistencia que tiene un globo aereostatico en subir al "cielo" con respecto al aire.
+Es la resistencia que tiene un globo aereostatico en subir al "cielo" con respecto a las gotas de agua.
 
 
 ## 3. Copia el enlace a tu ejemplo en p5.js.
@@ -394,4 +394,5 @@ class Manzana {
 
 ## 5. Captura una imagen representativa de tu ejemplo.
 <img width="1863" height="663" alt="image" src="https://github.com/user-attachments/assets/310cf9e8-52c8-448c-8957-ef442c98e169" />
+
 
