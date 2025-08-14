@@ -275,12 +275,123 @@ class Gota {
 Es la resistencia que tiene un cuerpo con respecto a la gravedad. La manzana cae porque es un objeto que esta siendo atraido por la gravedad de la tierra.
 
 ## 3. Copia el enlace a tu ejemplo en p5.js.
+https://editor.p5js.org/vlr1004/sketches/0vxbdfuSr
+
 
 ## 4. Copia el código.
 ````js
+let arbol;
+let manzanas = [];
+let gravedadActiva = false;
+
+function setup() {
+  createCanvas(800, 600);
+  arbol = new Arbol(width / 2, height / 2 + 100);
+
+  generarManzanas(6); // 6 manzanas iniciales
+}
+
+function draw() {
+  background(200, 230, 255);
+
+  arbol.show();
+
+  for (let m of manzanas) {
+    if (!m.attached && gravedadActiva) {
+      // Aplica fuerza gravitacional hacia abajo
+      let gravity = createVector(0, 0.2 * m.mass);
+      m.applyForce(gravity);
+
+      m.update();
+    }
+    m.show();
+  }
+}
+
+function mousePressed() {
+  if (mouseButton === LEFT) {
+    // Suelta las manzanas actuales
+    for (let m of manzanas) {
+      m.attached = false;
+    }
+    gravedadActiva = true;
+
+    // Genera nuevas manzanas en la copa
+    generarManzanas(6);
+  }
+}
+
+function generarManzanas(cantidad) {
+  for (let i = 0; i < cantidad; i++) {
+    // Posición aleatoria dentro de la copa del árbol
+    let angle = random(TWO_PI);
+    let radius = random(20, 80); // Radio dentro de la copa
+    let offsetX = cos(angle) * radius;
+    let offsetY = sin(angle) * radius * 0.8; // Aplastar para que sea elipse
+    manzanas.push(new Manzana(arbol.x + offsetX, arbol.y - 100 + offsetY, createVector(offsetX, offsetY)));
+  }
+}
+
+class Arbol {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  show() {
+    // Tronco
+    fill(120, 70, 20);
+    rectMode(CENTER);
+    rect(this.x, this.y, 40, 150);
+
+    // Copa
+    fill(30, 150, 60);
+    ellipse(this.x, this.y - 100, 200, 180);
+  }
+}
+
+class Manzana {
+  constructor(x, y, offset) {
+    this.pos = createVector(x, y);
+    this.offset = offset;
+    this.velocity = createVector(0, 0);
+    this.acceleration = createVector(0, 0);
+    this.mass = 5;
+    this.r = 15;
+    this.attached = true;
+  }
+
+  applyForce(force) {
+    let f = p5.Vector.div(force, this.mass);
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.pos.add(this.velocity);
+    this.acceleration.mult(0);
+  }
+
+  show() {
+    if (this.attached) {
+      // Mantener pegada al árbol
+      this.pos.x = arbol.x + this.offset.x;
+      this.pos.y = arbol.y - 100 + this.offset.y;
+    }
+    fill(255, 0, 0);
+    noStroke();
+    ellipse(this.pos.x, this.pos.y, this.r * 2);
+    // Tallo
+    stroke(0);
+    strokeWeight(2);
+    line(this.pos.x, this.pos.y - this.r, this.pos.x, this.pos.y - this.r - 5);
+  }
+}
 
 
 
 ````
 
 ## 5. Captura una imagen representativa de tu ejemplo.
+<img width="1863" height="663" alt="image" src="https://github.com/user-attachments/assets/310cf9e8-52c8-448c-8957-ef442c98e169" />
+
