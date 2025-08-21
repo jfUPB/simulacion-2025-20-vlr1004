@@ -7,17 +7,17 @@
 
 ## Parte 1: recuperación de conocimiento (Retrieval Practice)
 
-Escribe la ecuación vectorial de la segunda ley de Newton y explica cada uno de sus componentes.
-¿Por qué es necesario multiplicar la aceleración por cero en cada frame del método update()?
-Explica la diferencia entre paso por valor y paso por referencia cuando aplicamos fuerzas a un objeto.
-¿Cuál es la diferencia conceptual entre modelar fuerzas (como fricción, gravedad) y simplemente definir algoritmos de aceleración?
+1. Escribe la ecuación vectorial de la segunda ley de Newton y explica cada uno de sus componentes.
+2. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame del método update()?
+3. Explica la diferencia entre paso por valor y paso por referencia cuando aplicamos fuerzas a un objeto.
+4. ¿Cuál es la diferencia conceptual entre modelar fuerzas (como fricción, gravedad) y simplemente definir algoritmos de aceleración?
 
 ## Parte 2: reflexión sobre tu proceso (Metacognición)
 
-¿Qué fue lo más desafiante en la Actividad 10 (problema de los n-cuerpos)? ¿El concepto creativo, la implementación de las fuerzas o la integración de la interactividad?
-¿Las fuerzas que modelaste produjeron el comportamiento que esperabas? Describe un momento “sorpresa” (esperado o inesperado) durante el desarrollo.
-¿Cómo ha cambiado tu forma de pensar sobre la “física” en el arte generativo después de esta unidad?
-Si tuvieras una semana más, ¿Qué otras fuerzas te gustaría modelar o cómo mejorarías tu simulación del problema de los n-cuerpos?
+1. ¿Qué fue lo más desafiante en la Actividad 10 (problema de los n-cuerpos)? ¿El concepto creativo, la implementación de las fuerzas o la integración de la interactividad?
+2. ¿Las fuerzas que modelaste produjeron el comportamiento que esperabas? Describe un momento “sorpresa” (esperado o inesperado) durante el desarrollo.
+3. ¿Cómo ha cambiado tu forma de pensar sobre la “física” en el arte generativo después de esta unidad?
+4. Si tuvieras una semana más, ¿Qué otras fuerzas te gustaría modelar o cómo mejorarías tu simulación del problema de los n-cuerpos?
 
 # Actividad 12
 
@@ -40,5 +40,6 @@ Si tuvieras una semana más, ¿Qué otras fuerzas te gustaría modelar o cómo m
 3. Progresión conceptual: ¿El paso de manipular aceleración directamente (unidad 2) a modelar fuerzas (unidad 3) te pareció una progresión natural y efectiva? ¿Por qué?
 4. Conexión arte-física: ¿Cómo te ha ayudado esta unidad a ver la conexión entre conceptos físicos y expresión artística? ¿Te sientes más cómodo “jugando” con las leyes de la física en tus creaciones?
 5. Comentario adicional: ¿Algo más que quieras compartir sobre tu experiencia explorando fuerzas en el arte generativo?
+
 
 
