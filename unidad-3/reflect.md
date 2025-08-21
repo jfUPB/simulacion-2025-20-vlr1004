@@ -7,10 +7,14 @@
 
 ## Parte 1: recuperación de conocimiento (Retrieval Practice)
 
-1. Escribe la ecuación vectorial de la segunda ley de Newton y explica cada uno de sus componentes.
-2. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame del método update()?
+1. Escribe la ecuación vectorial de la segunda ley de Newton y explica cada uno de sus componentes: 
+> Sumatoria de las uerzas externas = masa * aceleración. La sumatoria de las fuerzas externas son todas las fuerzas que actuan sobre el objeto sumadas. La masa es el objeto que se esta evaluando y la aceleración es la derivada de la velocidad, en la mayoria de los casos es la gravedad.
+2. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame del método update()?: 
+> Es para que no se acelere infinitamente, ya que podría sumarse y acumularlo.
 3. Explica la diferencia entre paso por valor y paso por referencia cuando aplicamos fuerzas a un objeto.
+> Con paso valor pasa una copial del objeto (no se cambia el objeto original si le colocas una fuerza) y con el paso referencia se envia una dirección al objeto (se cambia el objeto original si le colocas una fuerza)
 4. ¿Cuál es la diferencia conceptual entre modelar fuerzas (como fricción, gravedad) y simplemente definir algoritmos de aceleración?
+> Se calculan las fuerzas, ya sea la velocidad o fricción por lo que da una consecuencia que searia la aceleración, definir los algoritmos de aceleración trabajamos con el resultado de lo anterior, no se tiene en cuenta que es lo que lo creo
 
 ## Parte 2: reflexión sobre tu proceso (Metacognición)
 
@@ -40,6 +44,7 @@
 3. Progresión conceptual: ¿El paso de manipular aceleración directamente (unidad 2) a modelar fuerzas (unidad 3) te pareció una progresión natural y efectiva? ¿Por qué?
 4. Conexión arte-física: ¿Cómo te ha ayudado esta unidad a ver la conexión entre conceptos físicos y expresión artística? ¿Te sientes más cómodo “jugando” con las leyes de la física en tus creaciones?
 5. Comentario adicional: ¿Algo más que quieras compartir sobre tu experiencia explorando fuerzas en el arte generativo?
+
 
 
 
