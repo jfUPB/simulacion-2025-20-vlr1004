@@ -40,20 +40,20 @@
 2. Analiza su Actividad 10 (problema de los n-cuerpos). Ejecuta su simulación, lee su concepto y revisa su código.
 3. En tu propia bitácora, escribe una retroalimentación constructiva para tu compañero, evaluando:
   - Claridad del Concepto: ¿La obra visual refleja la inspiración en las esculturas cinéticas de Calder y el problema de los n-cuerpos?
-    > lajdlkjasl
+    > Si, al tener piezas conectadas a un pivote hace referencia a las esculturas de calder y el movimiento de estas esta relacionado con el problema de los n cuerpos.
   - Implementación de Fuerzas: ¿Se aplican correctamente las leyes de Newton? ¿Las fuerzas se acumulan apropiadamente?
-    > lajdlkjasl
+    > Sí, las leyes de Newton se respetan a nivel de acumulación de fuerzas: aceleración, velocidad y posición. Las fuerzas se acumulan correctamente en cada frame.
   - Creatividad en el Modelado: ¿El modelado de fuerzas es interesante y genera comportamientos únicos?
-    > lajdlkjasl
+    > Muy creativa; el uso de resortes con longitud preferida, viento con ruido Perlin y repulsión entre piezas produce comportamientos emergentes y estéticamente únicos correspondientes a las esculturas de Calder.
   - Calidad de la Interactividad: ¿La interacción permite explorar diferentes aspectos del sistema de fuerzas?
-    > lajdlkjasl
+    > Permite modificar la red de pivotes de forma sencilla pero efectiva, explorando cómo el sistema responde y reacomoda su equilibrio.
 4. Conversa con tu compañero sobre las obras que cada uno creó. En tu bitácora, comenta:
   - ¿Qué fue lo que más te llamó la atención del trabajo de tu compañero?
-    > lajdlkjasl
+    > 
   - ¿Qué aprendiste de su enfoque para modelar fuerzas?
-    > lajdlkjasl
+    > 
   - ¿Qué técnica o idea de su implementación te gustaría aplicar en tus futuros proyectos?
-    > lajdlkjasl
+    > 
 
 # Actividad 13
 
@@ -62,6 +62,7 @@
 3. Progresión conceptual: ¿El paso de manipular aceleración directamente (unidad 2) a modelar fuerzas (unidad 3) te pareció una progresión natural y efectiva? ¿Por qué?
 4. Conexión arte-física: ¿Cómo te ha ayudado esta unidad a ver la conexión entre conceptos físicos y expresión artística? ¿Te sientes más cómodo “jugando” con las leyes de la física en tus creaciones?
 5. Comentario adicional: ¿Algo más que quieras compartir sobre tu experiencia explorando fuerzas en el arte generativo?
+
 
 
 
