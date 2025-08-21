@@ -49,11 +49,11 @@
     > Permite modificar la red de pivotes de forma sencilla pero efectiva, explorando cómo el sistema responde y reacomoda su equilibrio.
 4. Conversa con tu compañero sobre las obras que cada uno creó. En tu bitácora, comenta:
   - ¿Qué fue lo que más te llamó la atención del trabajo de tu compañero?
-    > 
+    > La forma en la que interactua y se mueven las nuevas figuras con respecto a las ya creadas.
   - ¿Qué aprendiste de su enfoque para modelar fuerzas?
-    > 
+    > Aprendí que no es necesario limitarse a una simulación física estrictamente realista para obtener comportamientos interesantes. En este código, las fuerzas se combinan de manera inspirada en la física. 
   - ¿Qué técnica o idea de su implementación te gustaría aplicar en tus futuros proyectos?
-    > 
+    > El uso de ruido Perlin como fuente de fuerza externa en lugar de valores aleatorios puros y el resorte con longitud preferida en vez de simplemente atraer hacia un punto. 
 
 # Actividad 13
 
@@ -62,6 +62,7 @@
 3. Progresión conceptual: ¿El paso de manipular aceleración directamente (unidad 2) a modelar fuerzas (unidad 3) te pareció una progresión natural y efectiva? ¿Por qué?
 4. Conexión arte-física: ¿Cómo te ha ayudado esta unidad a ver la conexión entre conceptos físicos y expresión artística? ¿Te sientes más cómodo “jugando” con las leyes de la física en tus creaciones?
 5. Comentario adicional: ¿Algo más que quieras compartir sobre tu experiencia explorando fuerzas en el arte generativo?
+
 
 
 
