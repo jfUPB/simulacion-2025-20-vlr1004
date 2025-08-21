@@ -18,7 +18,7 @@ https://editor.p5js.org/vlr1004/sketches/zttQUDgp4
 ### Copia el código.
 ## Mover
 
-
+``` js
 // Gravitational Attraction + Calder-like visuals
 class Mover {
   constructor(x, y, vx, vy, m, shapeType) {
@@ -71,10 +71,11 @@ class Mover {
   }
 }
 
-
+```
 
 ## Sketch
 
+``` js
 let movers = [];
 let sun;
 
@@ -144,7 +145,9 @@ function mousePressed() {
   }
 }
 
+```
 
 ### Captura una imagen representativa de tu ejemplo.
 <img width="1005" height="768" alt="image" src="https://github.com/user-attachments/assets/710fc3fb-3b27-46d9-a2a7-868cb30239d5" />
+
 
