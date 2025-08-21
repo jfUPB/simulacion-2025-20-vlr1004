@@ -3,20 +3,23 @@
 
 ## 🛠 Fase: Apply
 
-### Diseña e implementa tu obra generativa interactiva en tiempo real.
+# Diseña e implementa tu obra generativa interactiva en tiempo real.
 
 - Debe ser interactiva.
 - Debes usar al menos dos algoritmos diferentes de la unidad 1, además de random.
-- Explica cómo modelaste el problema de los n-cuerpos en tu obra.
+ 
+Mi obra es una escultura cinética digital donde el movimiento nace de la gravedad entre cuerpos. Cada partícula danza en equilibrio frágil, guiada por el azar del Lévy flight y la fluidez del ruido Perlin. Con cada clic, el espectador interviene y altera la coreografía, recordando que el universo —como la obra— nunca está quieto, siempre en transformación. 
 
-Mi obra esta inspirada en el sistema solar, el como se mueve y al llegar un objeto extraño como se comporta. 
+# Explica cómo modelaste el problema de los n-cuerpos en tu obra.
+En mi obra modelé el problema de los n-cuerpos considerando cada partícula como un “cuerpo” con masa propia que ejerce una fuerza gravitacional sobre los demás. Para esto, cada objeto calcula la atracción hacia los demás cuerpos y hacia un “sol” central, siguiendo la fórmula de la segunda ley de Newton, donde la fuerza depende del producto de las masas e inversamente del cuadrado de la distancia. De esta forma, el movimiento de cada partícula no está predeterminado, sino que emerge de la interacción mutua de todos los cuerpos, generando un comportamiento dinámico y caótico que recuerda a una danza colectiva, similar a las esculturas móviles de Calder.
 
-### Copia el enlace a tu simulación en p5.js.
+
+# Copia el enlace a tu simulación en p5.js.
 
 https://editor.p5js.org/vlr1004/sketches/zttQUDgp4
 
-### Copia el código.
-## Mover
+# Copia el código.
+### Mover
 
 ``` js
 // Gravitational Attraction + Calder-like visuals
@@ -73,7 +76,7 @@ class Mover {
 
 ```
 
-## Sketch
+### Sketch
 
 ``` js
 let movers = [];
@@ -147,7 +150,8 @@ function mousePressed() {
 
 ```
 
-### Captura una imagen representativa de tu ejemplo.
+# Captura una imagen representativa de tu ejemplo.
 <img width="1005" height="768" alt="image" src="https://github.com/user-attachments/assets/710fc3fb-3b27-46d9-a2a7-868cb30239d5" />
+
 
 
