@@ -58,10 +58,16 @@
 # Actividad 13
 
 1. Continuar: ¿Qué actividad o concepto de esta unidad te resultó más “revelador” para entender las fuerzas en el arte generativo?
+> El paso valor y paso por referencia, ya que al utilizar algunas fuerzas es más facil utilizar algunas cosas de el para no referenciar enseguida o imponer la fuerza enseguida, todo depende de la viabilidad.
 2. Dejar de hacer: ¿Hubo alguna actividad que te pareció redundante o menos efectiva para comprender el modelado de fuerzas?
+> No
 3. Progresión conceptual: ¿El paso de manipular aceleración directamente (unidad 2) a modelar fuerzas (unidad 3) te pareció una progresión natural y efectiva? ¿Por qué?
+> Más que efectiva tiene coherencia, porque dependiendo como se vea aprender el hecho especifico hace que sea más facil el analizar como se podría manejar de diferentes maneras.
 4. Conexión arte-física: ¿Cómo te ha ayudado esta unidad a ver la conexión entre conceptos físicos y expresión artística? ¿Te sientes más cómodo “jugando” con las leyes de la física en tus creaciones?
+> Si me siento mas comoda jugando con las leyes fisicas. El arte hace referencia a la realidad y este tipo de temas que conectan el mundo digital con el fisico es divertido. 
 5. Comentario adicional: ¿Algo más que quieras compartir sobre tu experiencia explorando fuerzas en el arte generativo?
+> No
+
 
 
 
