@@ -363,14 +363,127 @@ function draw() {
 
 
 ## 4. 
-- **Tema anterior utilizado:**
-- **Expliación gestión:**
-- **Explicación:**
+- **Tema anterior utilizado:** Ruido perlin y ondas.
+- **Expliación gestión:** - **Creación:** Se crea una nueva partícula en cada ciclo del draw() y se agrega a un emisor. -**Desaparición:** Las partículas son eliminadas cuando "mueren", en este caso, al salir de la pantalla. El recolector de basura de JavaScript se encarga de liberar su memoria. -**Control del Consumo de Memoria:** El programa evita el uso excesivo de memoria al eliminar constantemente las partículas antiguas, manteniendo un número estable de partículas en la simulación.
+- **Explicación:** Al principio queria seguir con el tema del agua pero al realizar el codigo, me gusto como se veia, y ahora es una cuerda para dibujar ondas 
 - **Enlace:**
 - **Codigo:**
+Sketch
 ```js
+let emitter;
+let t = 0; // Una variable de tiempo para el ruido Perlin
+
+function setup() {
+  createCanvas(640, 480);
+  // El emisor se crea en la parte superior izquierda de la pantalla
+  emitter = new Emitter(0, 0);
+  background(255);
+}
+
+function draw() {
+  // Oscurecemos el fondo gradualmente para un efecto de rastro
+  background(255, 30);
+
+  // La manguera sigue al ratón
+  emitter.origin.set(mouseX, mouseY);
+  
+  // Se añade una nueva partícula
+  emitter.addParticle();
+
+  // Aplicamos un empuje basado en el ruido Perlin para un movimiento "orgánico"
+  // Multiplicamos por 2 para que sea más notable
+  let perlinForce = p5.Vector.fromAngle(noise(t) * TWO_PI).mult(2);
+  emitter.applyForce(perlinForce);
+  
+  // Incrementamos el tiempo para el ruido Perlin
+  t += 0.01;
+
+  // Aplicamos una fuerza de gravedad
+  let gravity = createVector(0, 0.05);
+  emitter.applyForce(gravity);
+
+  // Aplicamos una fuerza de fricción simple para simular la resistencia del aire
+  for (let particle of emitter.particles) {
+    let friction = particle.velocity.copy();
+    friction.mult(-1);
+    friction.normalize();
+    friction.mult(0.01);
+    particle.applyForce(friction);
+  }
+
+  // Se ejecutan y se muestran las partículas
+  emitter.run();
+}
 ```
-- **Captura:**  
+Particle
+```js
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(0, 0);
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+  }
+
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return (this.position.y > height + 20 || this.position.x > width + 20 || this.position.x < -20);
+  }
+}
+```
+Emitter
+```js
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+```
+- **Captura:**
+<img width="520" height="422" alt="image" src="https://github.com/user-attachments/assets/35b54a58-84d6-485f-953d-2dac28a1f53e" />
+ 
 
 ## 5. 
 - **Tema anterior utilizado:**
@@ -381,6 +494,7 @@ function draw() {
 ```js
 ```
 - **Captura:**    
+
 
 
 
