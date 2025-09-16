@@ -10,7 +10,7 @@
 
 ### Experimentos:
 
-1. 
+## 1. 
 - **Tema anterior utilizado:** Lévy flight
 - **Explicación gestión:** - *Creación y Desaparición:* La lógica sigue siendo la misma. Las partículas se crean una por fotograma en draw() y se eliminan cuando su lifespan llega a cero.  - *Gestión de Memoria:* La memoria se gestiona de forma eficiente. Se asigna para cada nueva partícula, y el recolector de basura la libera automáticamente cuando la partícula es eliminada del arreglo, evitando la acumulación de objetos.
 - **Explicación:** Queria que pareciera una colmena que va saliendo de su panal, que lo ayuda a dar el sistema de particulas al simular como salen las abejas y el lévy flight en parecerse al movimiento de las abejas 
@@ -119,7 +119,7 @@ class Particle {
 
 
 
-2. 
+## 2. 
 - **Tema anterior utilizado:** Random y vectores
 - **Expliación gestión:** - **Creación:** Las partículas se generarán en la ubicación del `waterSource` (el hueco) con cada fotograma. - **Desaparición:** Las partículas seguirán teniendo una vida útil y serán eliminadas del arreglo cuando "mueran", permitiendo que el recolector de basura libere la memoria. - **Cambio de Hueco:** El cambio de la posición del hueco no será automático; en su lugar, ocurrirá cuando detectemos un clic del ratón dentro del área del `waterSource`. Esto añade un elemento de interactividad al proyecto.
 - **Explicación:** Queria simular una fuga de agua, donde las particulas del programa son el agua, que cae descuidada e intentamos tapar pero salen hoyos de lugares randoms.
@@ -242,7 +242,127 @@ class Emitter {
 <img width="646" height="322" alt="image" src="https://github.com/user-attachments/assets/0c9b778b-f6df-4f46-8d94-3a7fe8a5bb5e" />
  
 
-3. 
+## 3. 
+- **Tema anterior utilizado:** Motion 101
+- **Expliación gestión:** - **Creación:** El proceso de creación es continuo. En cada fotograma (o ciclo del bucle `draw`), se crea una nueva partícula y se añade a un arreglo llamado `particles` dentro de la clase Emitter. El código que lo hace es: `this.particles.push(new Particle(...))`. La partícula se crea con su propia posición, velocidad y otras propiedades iniciales. - **Desaparición:** La desaparición se basa en una condición de "muerte". En el código de la clase `Particle`, se define un método `isDead()` que verifica si la partícula ha salido de la pantalla por la parte inferior. Si la condición `(this.position.y > height + this.size)` es verdadera, la partícula se considera muerta. - El sistema asegura que la cantidad de memoria utilizada por el programa se mantenga estable. Las partículas nuevas reemplazan a las viejas, creando un flujo constante de asignación y liberación de memoria que evita que la simulación se vuelva lenta o colapse con el tiempo.
+- **Explicación:** Al principio no sabía que hacer, pero queria seguir utilizando el agua como concepto, comencé haciendo una cascada de cosas (unas caritas felices) pero no me gusto, al ver el codigo en marcha me recordo a las gotas que caen por las ventanas de los carros.
+- **Enlace:** https://editor.p5js.org/vlr1004/sketches/MuIwQM-Wb
+- **Codigo:**
+  **Emitter**
+```js
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+```
+**Particle**
+```js
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(0, 0);
+    this.color = color(100, 150, 255, 150); 
+    this.size = random(8, 15);
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    // Hacemos que las gotas reboten suavemente en los bordes laterales
+    if (this.position.x < 0 || this.position.x > width) {
+        this.velocity.x *= -0.5;
+    }
+    this.position.x = constrain(this.position.x, 0, width);
+  }
+
+  show() {
+    noStroke();
+    fill(this.color);
+    // Dibujamos la forma de gota
+    ellipse(this.position.x, this.position.y, this.size, this.size * 1.5);
+    // Añadimos un pequeño brillo para dar volumen
+    fill(255, 255, 255, 80);
+    circle(this.position.x - this.size * 0.1, this.position.y - this.size * 0.3, this.size * 0.4);
+  }
+
+  // La partícula muere si sale del lienzo por la parte inferior
+  isDead() {
+    return (this.position.y > height + this.size);
+  }
+}
+```
+**Sketch**
+```js
+let emitter;
+
+function setup() {
+  createCanvas(640, 480);
+  emitter = new Emitter(width / 2, 0);
+  background(20); 
+}
+
+function draw() {
+  background(20, 50);
+
+  emitter.origin.set(random(width), 0);
+  
+  emitter.addParticle();
+
+  let gravity = createVector(0, 0.08);
+  emitter.applyForce(gravity);
+
+  let wind = createVector(random(-0.02, 0.02), 0);
+  emitter.applyForce(wind);
+
+  for (let particle of emitter.particles) {
+    let friction = particle.velocity.copy();
+    friction.mult(-1);
+    friction.normalize();
+    friction.mult(0.02);
+    particle.applyForce(friction);
+  }
+
+  emitter.run();
+}
+```
+- **Captura:**
+<img width="555" height="433" alt="image" src="https://github.com/user-attachments/assets/34954b3a-5031-438c-a74e-f8bc9e59de32" />
+
+
+## 4. 
 - **Tema anterior utilizado:**
 - **Expliación gestión:**
 - **Explicación:**
@@ -252,17 +372,7 @@ class Emitter {
 ```
 - **Captura:**  
 
-4. 
-- **Tema anterior utilizado:**
-- **Expliación gestión:**
-- **Explicación:**
-- **Enlace:**
-- **Codigo:**
-```js
-```
-- **Captura:**  
-
-5. 
+## 5. 
 - **Tema anterior utilizado:**
 - **Expliación gestión:**
 - **Explicación:**
@@ -271,5 +381,6 @@ class Emitter {
 ```js
 ```
 - **Captura:**    
+
 
 
