@@ -8,3 +8,7 @@
 4. La creación de las particulas se realiza en el `draw()`, con la función `emitter.addParticle()`, para su desaparición al llegar el tiempo limite de su vida, es eliminada la aprticula. Se gestiona la memoria, primero asignando en la instancia de la particula, que se guardan el en arreglo de `this.particles` del objeto emitter y su liberación es con el recolector de basura de javaScript, y cuando se considera 'muerta', libera la memoria ocupada.
 5. Para la creación de sus particulas se hace con el blucle `draw()` como en el anteriores. Para desaparecer lo mismo que el anterior donde el tiempo (su vida util) se va acabando (El bucle que maneja esta eliminación sigue iterando hacia atrás para mantener la estabilidad del índice del arreglo). Para la gestión de memoria, se asigna a las particulas en cada fotograma y el unico objeto repeller solo se crea una vez al inicio del programa, se eliminan/liberan, con el garbage colletor, liberando la memora automaticamente la particula pierde su vida util. 
 
+### Experimentos:
+
+1. 
+
