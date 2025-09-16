@@ -11,4 +11,137 @@
 ### Experimentos:
 
 1. 
+- Tema anterior utilizado: Lévy flight
+- Explicación gestión: - Creación y Desaparición: La lógica sigue siendo la misma. Las partículas se crean una por fotograma en draw() y se eliminan cuando su lifespan llega a cero.  - Gestión de Memoria: La memoria se gestiona de forma eficiente. Se asigna para cada nueva partícula, y el recolector de basura la libera automáticamente cuando la partícula es eliminada del arreglo, evitando la acumulación de objetos.
+- Explicación: Queria que pareciera una colmena que va saliendo de su panal, que lo ayuda a dar el sistema de particulas al simular como salen las abejas y el lévy flight en parecerse al movimiento de las abejas 
+- Enlace: https://editor.p5js.org/vlr1004/sketches/QXXVbur85
+- Cambios al codigo:
+Sketch
+```js
+let emitter;
+let hive;
 
+function setup() {
+  createCanvas(640, 480);
+  // El emisor de avispas se crea en el centro de la pantalla
+  emitter = new Emitter(width / 2, height / 2);
+  hive = createVector(width / 2, height / 2);
+}
+
+function draw() {
+  background(255);
+  // La "gravedad" ahora apunta hacia la colmena
+  let attraction = p5.Vector.sub(hive, emitter.origin);
+  attraction.setMag(0.1); 
+  
+  // Agregamos una nueva partícula
+  emitter.addParticle();
+  
+  // Aplicamos la fuerza de atracción
+  emitter.applyForce(attraction);
+  
+  // Aplicamos un pequeño 'Lévy flight' para el movimiento errático
+  let erratic = p5.Vector.random2D().mult(0.5);
+  emitter.applyForce(erratic);
+
+  emitter.run();
+}
+```
+Emitter
+```js
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+```
+Particle
+```js
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    this.lifespan -= 2;
+  }
+
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+```
+- Captura: <img width="587" height="432" alt="image" src="https://github.com/user-attachments/assets/07506b7a-76bb-491e-9fa1-e42d76648cc1" />
+
+
+
+2. 
+- Tema anterior utilizado:
+- Explicación:
+- Enlace:
+- Codigo:
+- Captura:  
+
+3. 
+- Tema anterior utilizado:
+- Explicación:
+- Enlace:
+- Codigo:
+- Captura:
+
+4. 
+- Tema anterior utilizado:
+- Explicación:
+- Enlace:
+- Codigo:
+- Captura:
+
+5. 
+- Tema anterior utilizado:
+- Explicación:
+- Enlace:
+- Codigo:
+- Captura:    
