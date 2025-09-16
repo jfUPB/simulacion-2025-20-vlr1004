@@ -366,7 +366,7 @@ function draw() {
 - **Tema anterior utilizado:** Ruido perlin y ondas.
 - **Expliación gestión:** - **Creación:** Se crea una nueva partícula en cada ciclo del draw() y se agrega a un emisor. -**Desaparición:** Las partículas son eliminadas cuando "mueren", en este caso, al salir de la pantalla. El recolector de basura de JavaScript se encarga de liberar su memoria. -**Control del Consumo de Memoria:** El programa evita el uso excesivo de memoria al eliminar constantemente las partículas antiguas, manteniendo un número estable de partículas en la simulación.
 - **Explicación:** Al principio queria seguir con el tema del agua pero al realizar el codigo, me gusto como se veia, y ahora es una cuerda para dibujar ondas 
-- **Enlace:**
+- **Enlace:** https://editor.p5js.org/vlr1004/sketches/XBJQZilHJ
 - **Codigo:**
 Sketch
 ```js
@@ -494,6 +494,7 @@ class Emitter {
 ```js
 ```
 - **Captura:**    
+
 
 
 
