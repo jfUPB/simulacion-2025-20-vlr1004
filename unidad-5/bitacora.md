@@ -11,12 +11,12 @@
 ### Experimentos:
 
 1. 
-- Tema anterior utilizado: Lévy flight
-- Explicación gestión: - Creación y Desaparición: La lógica sigue siendo la misma. Las partículas se crean una por fotograma en draw() y se eliminan cuando su lifespan llega a cero.  - Gestión de Memoria: La memoria se gestiona de forma eficiente. Se asigna para cada nueva partícula, y el recolector de basura la libera automáticamente cuando la partícula es eliminada del arreglo, evitando la acumulación de objetos.
-- Explicación: Queria que pareciera una colmena que va saliendo de su panal, que lo ayuda a dar el sistema de particulas al simular como salen las abejas y el lévy flight en parecerse al movimiento de las abejas 
-- Enlace: https://editor.p5js.org/vlr1004/sketches/QXXVbur85
-- Cambios al codigo:
-Sketch
+- **Tema anterior utilizado:** Lévy flight
+- **Explicación gestión:** - *Creación y Desaparición:* La lógica sigue siendo la misma. Las partículas se crean una por fotograma en draw() y se eliminan cuando su lifespan llega a cero.  - *Gestión de Memoria:* La memoria se gestiona de forma eficiente. Se asigna para cada nueva partícula, y el recolector de basura la libera automáticamente cuando la partícula es eliminada del arreglo, evitando la acumulación de objetos.
+- **Explicación:** Queria que pareciera una colmena que va saliendo de su panal, que lo ayuda a dar el sistema de particulas al simular como salen las abejas y el lévy flight en parecerse al movimiento de las abejas 
+- **Enlace:** https://editor.p5js.org/vlr1004/sketches/QXXVbur85
+- **Cambios al codigo:**
+**Sketch**
 ```js
 let emitter;
 let hive;
@@ -47,7 +47,7 @@ function draw() {
   emitter.run();
 }
 ```
-Emitter
+**Emitter**
 ```js
 class Emitter {
   constructor(x, y) {
@@ -76,7 +76,7 @@ class Emitter {
   }
 }
 ```
-Particle
+**Particle**
 ```js
 class Particle {
   constructor(x, y) {
@@ -119,29 +119,42 @@ class Particle {
 
 
 2. 
-- Tema anterior utilizado:
-- Explicación:
-- Enlace:
-- Codigo:
-- Captura:  
+- **Tema anterior utilizado:**
+- **Expliación gestión:**
+- **Explicación:**
+- **Enlace:**
+- **Codigo:**
+```js
+```
+- **Captura:**  
 
 3. 
-- Tema anterior utilizado:
-- Explicación:
-- Enlace:
-- Codigo:
-- Captura:
+- **Tema anterior utilizado:**
+- **Expliación gestión:**
+- **Explicación:**
+- **Enlace:**
+- **Codigo:**
+```js
+```
+- **Captura:**  
 
 4. 
-- Tema anterior utilizado:
-- Explicación:
-- Enlace:
-- Codigo:
-- Captura:
+- **Tema anterior utilizado:**
+- **Expliación gestión:**
+- **Explicación:**
+- **Enlace:**
+- **Codigo:**
+```js
+```
+- **Captura:**  
 
 5. 
-- Tema anterior utilizado:
-- Explicación:
-- Enlace:
-- Codigo:
-- Captura:    
+- **Tema anterior utilizado:**
+- **Expliación gestión:**
+- **Explicación:**
+- **Enlace:**
+- **Codigo:**
+```js
+```
+- **Captura:**    
+
