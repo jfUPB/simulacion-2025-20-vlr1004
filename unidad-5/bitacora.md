@@ -486,14 +486,119 @@ class Emitter {
  
 
 ## 5. 
-- **Tema anterior utilizado:**
-- **Expliación gestión:**
-- **Explicación:**
-- **Enlace:**
+- **Tema anterior utilizado:** distribución normal y aceleración
+- **Expliación gestión:** -**Creación:** Una nueva partícula se crea en cada ciclo del draw() y se agrega a un emisor. -**Desaparición:** Las partículas son eliminadas cuando "mueren", al salir de la pantalla. El recolector de basura de JavaScript libera su memoria. -**Control del Consumo de Memoria:** El programa evita el uso excesivo de memoria eliminando constantemente las partículas antiguas, manteniendo un número estable de partículas en la simulación.
+- **Explicación:** Queria experimentar con un arte mas abstracto y que se pudiera intervenir
+- **Enlace:** https://editor.p5js.org/vlr1004/sketches/SERNfd9i3
 - **Codigo:**
+Sketch
 ```js
+let emitter;
+let mouseForce;
+
+function setup() {
+  createCanvas(640, 480);
+  emitter = new Emitter(width / 2, height / 2);
+  mouseForce = createVector(0, 0);
+  background(255);
+}
+
+function draw() {
+  background(255, 10);
+
+  // La posición del emisor sigue la del ratón
+  emitter.origin.set(mouseX, mouseY);
+  
+  // Se añade una nueva partícula
+  emitter.addParticle();
+
+  // Se calcula un vector de fuerza basado en una distribución normal
+  // Esto crea un movimiento "agrupado" y no completamente aleatorio
+  let x = randomGaussian();
+  let y = randomGaussian();
+  let sd = 1.5; // Desviación estándar
+  let mean = 0; // Media
+  
+  // La fuerza del mouse controla la aceleración
+  mouseForce.set(x * sd + mean, y * sd + mean);
+  emitter.applyForce(mouseForce);
+
+  // Se ejecutan y se muestran las partículas
+  emitter.run();
+}
 ```
-- **Captura:**    
+Particle
+```js
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(0, 0);
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+  }
+
+  show() {
+    noStroke();
+    // Color de la partícula basado en su "vida útil" para un efecto de desvanecimiento
+    fill(0, 100, 255, this.lifespan);
+    // Dibujamos un círculo pequeño y semitransparente
+    circle(this.position.x, this.position.y, 4);
+  }
+
+  isDead() {
+    // La partícula muere si está fuera de los límites de la pantalla
+    return (this.position.y > height + 20 || this.position.x > width + 20 || this.position.x < -20 || this.position.y < -20);
+  }
+}
+```
+Emitter
+```js
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+```
+- **Captura:**
+<img width="541" height="434" alt="image" src="https://github.com/user-attachments/assets/44dd88a2-c4a4-472e-a138-033555c8cae1" />
+    
+
 
 
 
