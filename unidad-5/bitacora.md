@@ -867,4 +867,60 @@ https://editor.p5js.org/vlr1004/sketches/jKvpUxq-g
 <img width="895" height="622" alt="image" src="https://github.com/user-attachments/assets/8fed1012-40d3-45b5-b2fd-09269e0400f5" />
 
 
+### Auto calificación
+
+**Propuesta de Nota:** 4.9 / 5.0
+Considero que el proyecto merece una nota cercana a la máxima, ya que cumple con todos los criterios de la rúbrica de forma excelente, mostrando atención al detalle y una comprensión profunda de los conceptos.
+
+**Justificación por Criterio**
+*1. Investigación y Experimentación (Evidencia en la Bitácora)*
+Nota Propuesta: 5.0 / 5.0
+
+A lo largo de nuestra bitácora, la evidencia demuestra que el proceso fue un ciclo constante de experimentación y justificación.
+
+Análisis de conceptos: Se analizó el error EncodingError: Unable to decode audio data, se diagnosticó el problema con el formato de audio y se propuso una solución que funcionó. Esto demuestra un análisis de un problema técnico.
+
+Justificación de modificaciones: Cada cambio en el código fue justificado. Por ejemplo, al cambiar de un "prado en el viento" a una "fogata", se explicaron las razones estéticas y técnicas para modificar el fondo a negro, la paleta de colores a tonos cálidos y el movimiento de las partículas.
+
+Interacción de conceptos: Se justificó cómo los conceptos de Ruido Perlin, Coordenadas Polares y Fuerza de Aceleración interactúan entre sí para crear el movimiento orgánico de la fogata, a diferencia de un movimiento puramente lineal. Se argumentó por qué era necesario separar la fuerza horizontal (graves) de la fuerza de "parpadeo" (Ruido Perlin) para corregir el sesgo en el movimiento.
+
+*2. Intención y Diseño (Proceso de la Bitácora)*
+Nota Propuesta: 4.5 / 5.0
+
+La bitácora muestra una intención de diseño clara, aunque la fase de "bocetos" se realizó de forma verbal y no visual.
+
+Concepto Definido: El concepto de "Fogata Sonora" se definió explícitamente y se mantuvo a lo largo de las modificaciones. El objetivo era evocar calma y conexión a través de la música.
+
+Toma de Decisiones: Cada decisión, como el fondo negro, los colores cálidos, el movimiento suave y la reacción a los graves y agudos, se vincula directamente al concepto de una fogata que se siente personal y relajante.
+
+Propósito de la Interacción: La interacción de subir una canción no es solo una funcionalidad, sino que tiene el propósito de hacer la obra única para cada usuario y hacer que el fuego baile al ritmo de la música elegida.
+
+*3. Aplicación Técnica (Código de la Bitácora)*
+Nota Propuesta: 4.8 / 5.0
+
+El código final es robusto, modular y gestiona la memoria de manera eficiente.
+
+Estructura Modular: El código está organizado en dos clases (Particle y FireParticle) y un archivo principal (sketch.js). Esto demuestra una estructura modular y una correcta aplicación de la programación orientada a objetos.
+
+Herencia y Polimorfismo: FireParticle hereda de Particle, reusando código, y sobrescribe el método show() para un comportamiento visual único, lo que evidencia el uso de polimorfismo.
+
+Gestión de Memoria: El programa gestiona activamente la memoria. Las partículas que salen de la pantalla se eliminan (splice) y se crean nuevas, manteniendo un número controlado y constante de partículas para garantizar un rendimiento estable.
+
+*4. Calidad de la Obra Final (Artefacto Entregado)*
+Nota Propuesta: 5.0 / 5.0
+
+La calidad de la obra final es muy alta, mostrando una gran atención al detalle.
+
+Estabilidad y Rendimiento: La obra se ejecuta de forma estable, sin caídas de frame rate, incluso con una gran cantidad de partículas.
+
+Respuesta Interactiva: La respuesta a la música es predecible y consistente. El movimiento horizontal y el "pulso" de los agudos son claros y se sienten naturales, lo que hace que la obra sea agradable de ver.
+
+Coherencia Visual: A pesar de los múltiples cambios y la complejidad del código, el resultado visual final es coherente con el concepto de fogata, con movimientos suaves, colores que se desvanecen y un aspecto visual que evoca calma y serenidad.
+
+Nota: De igual forma, pienso que para mi elección cambia por la nota máxima 5.0, basándose en la superación de los desafíos técnicos y la aplicación exitosa de todos los conceptos de la rúbrica. El proceso de depuración del código y los ajustes continuos, como corregir el movimiento inclinado y mejorar la reacción a la música, me permitieron consolidar mi aprendizaje. La obra final es un reflejo directo de esta dedicación, mostrando una implementación técnica sólida que se mantiene fiel a mi visión creativa de una "fogata sonora" inmersiva y tranquila.
+
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/7963da09-8f32-4452-929d-5dd8a2f307dd" />
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/6af1d175-416a-4cb6-b8af-cf292be59879" />
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/52b65df5-f9a4-48a9-badd-2b6c7db9d5b9" />
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/070cde1b-081c-4846-a77b-0e544e062b7c" />
 
