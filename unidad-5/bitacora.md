@@ -615,7 +615,7 @@ Herencia: La clase `FireParticle` hereda de la clase base `Particle`. Esto permi
 
 Polimorfismo: El método `show()` es un excelente ejemplo de polimorfismo. La clase base `Particle` tiene una versión simple del método, mientras que la clase hija `FireParticle` sobrescribe el método `show()` para dibujar una partícula con un color, un tamaño y una transparencia que se desvanecen, lo que le da su apariencia única de llama.
 
-### Concceptos de Unidades Anteriores
+### Conceptos de Unidades Anteriores
 - Motion 101: El movimiento de las partículas es suave y continuo. Aunque reaccionan a la música, el flujo general es fluido, lo que crea una sensación de calma y un movimiento natural, como el parpadeo de una llama real.
 
 - Ruido Perlin: Se utiliza para generar el movimiento orgánico y tembloroso de las partículas, imitando el comportamiento errático pero fluido del fuego y el humo.
@@ -865,4 +865,5 @@ https://editor.p5js.org/vlr1004/sketches/jKvpUxq-g
 
 ### Captura de Pantalla 
 <img width="895" height="622" alt="image" src="https://github.com/user-attachments/assets/8fed1012-40d3-45b5-b2fd-09269e0400f5" />
+
 
