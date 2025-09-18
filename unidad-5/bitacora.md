@@ -859,3 +859,10 @@ canvas {
   z-index: 1000; /* Asegura que esté por encima de todo */
 }
 ```
+
+### Enlace
+https://editor.p5js.org/vlr1004/sketches/jKvpUxq-g
+
+### Captura de Pantalla 
+<img width="895" height="622" alt="image" src="https://github.com/user-attachments/assets/8fed1012-40d3-45b5-b2fd-09269e0400f5" />
+
