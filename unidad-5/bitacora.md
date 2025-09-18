@@ -603,7 +603,259 @@ class Emitter {
 # Apply
 ## Actividad 3
 
+### Concepto:
+Primero: Arte desde la punta de tu dedo donde esté será el pincel. 
+Segundo: Cesped para descansar, un relajante visualizador donde se interactua con el aire.
+Tercero (El elegido): Una fogata sonora, para relajar la mente con la muscia y las visuales.  
 
+*Fogata Sonora*: La obra busca comunicar una sensación de calma, calidez y conexión con la música, como si estuvieras sentado frente a una fogata en una noche tranquila. El movimiento de las "llamas" es suave y constante, pero reacciona de manera perceptible a los cambios en la música, creando una experiencia interactiva y relajante.
 
+### Herencia y Polimorfismo
+Herencia: La clase `FireParticle` hereda de la clase base `Particle`. Esto permite que `FireParticle` obtenga propiedades y métodos de `Particle`, como la posición, velocidad, aceleración y el método `update()`, sin tener que reescribir ese código.
 
+Polimorfismo: El método `show()` es un excelente ejemplo de polimorfismo. La clase base `Particle` tiene una versión simple del método, mientras que la clase hija `FireParticle` sobrescribe el método `show()` para dibujar una partícula con un color, un tamaño y una transparencia que se desvanecen, lo que le da su apariencia única de llama.
 
+### Concceptos de Unidades Anteriores
+- Motion 101: El movimiento de las partículas es suave y continuo. Aunque reaccionan a la música, el flujo general es fluido, lo que crea una sensación de calma y un movimiento natural, como el parpadeo de una llama real.
+
+- Ruido Perlin: Se utiliza para generar el movimiento orgánico y tembloroso de las partículas, imitando el comportamiento errático pero fluido del fuego y el humo.
+
+- Coordenadas Polares: Se utilizan para crear la fuerza de "parpadeo". En lugar de usar coordenadas `x` e `y` para la fuerza, se usa un ángulo generado por el ruido Perlin (`p5.Vector.fromAngle()`) para crear un vector de movimiento que se siente más circular y natural.
+
+- Fuerza de Aceleración: La base de toda la dinámica de la obra. Tanto la fuerza horizontal (impulsada por los graves) como la fuerza vertical (crecimiento + agudos) se aplican como vectores de aceleración que afectan la velocidad de las partículas en cada fotograma.
+
+  ### Gestión del Ciclo de vida y Memoria
+- Creación de Partículas: Las partículas se crean al inicio de la obra y se regeneran continuamente en la parte inferior de la pantalla.
+
+- Gestión de la Memoria: Las partículas que salen de la parte superior de la pantalla se eliminan (`particles.splice(i, 1)`), liberando recursos de la memoria y asegurando que la obra pueda funcionar de manera fluida por un tiempo indefinido.
+
+### Interacción 
+El usuario puede ingresar a la obra generativa, la canción de su elección.
+
+### Código
+- index
+```js
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Fogata Sonora</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #upload-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="upload-container">
+      <label for="file-input">Sube tu música:</label>
+      <input type="file" id="file-input" accept="audio/*">
+      <p id="status-message">Esperando que subas una canción...</p>
+    </div>
+    <script src="particle.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>
+```
+- particle
+```js
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(0, 0);
+    this.lifespan = 255.0; 
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    this.lifespan -= 2.0;
+  }
+
+  show() {
+    noStroke();
+    fill(255, this.lifespan);
+    circle(this.position.x, this.position.y, 4);
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+class FireParticle extends Particle {
+  constructor(x, y, size) {
+    super(x, y);
+    this.size = size;
+    this.color = color(random(200, 255), random(50, 150), 0);
+  }
+
+  show() {
+    noStroke();
+    let c = lerpColor(this.color, color(0, 0, 0, 0), 1 - this.lifespan / 255);
+    fill(c);
+    let currentSize = map(this.lifespan, 0, 255, 1, this.size);
+    circle(this.position.x, this.position.y, currentSize);
+  }
+
+  isDead() {
+    return this.position.y < -this.size;
+  }
+}
+```
+- sketch
+```js
+let particles = [];
+let windStrength = 0.0;
+let zoff = 0;
+let song;
+let amplitude;
+let fft;
+let fileInput;
+let statusMessage;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  
+  amplitude = new p5.Amplitude();
+  fft = new p5.FFT();
+  
+  fileInput = select('#file-input');
+  statusMessage = select('#status-message');
+  
+  fileInput.changed(handleFile);
+}
+
+function handleFile() {
+  const file = fileInput.elt.files[0];
+  if (file) {
+    statusMessage.html('Cargando canción...');
+    
+    const url = URL.createObjectURL(file);
+    
+    loadSound(url, onSoundLoaded, onSoundError);
+  }
+}
+
+function onSoundLoaded(loadedSound) {
+  song = loadedSound;
+  statusMessage.html('¡Canción cargada! La fogata está encendiéndose...');
+  
+  particles = [];
+  
+  // Aumentamos la cantidad de partículas a 1000 y el tamaño a un rango de (5, 12)
+  for (let i = 0; i < 1000; i++) {
+    particles.push(new FireParticle(random(width), height, random(5, 12)));
+  }
+  
+  song.loop();
+  userStartAudio();
+}
+
+function onSoundError() {
+  statusMessage.html('Error al cargar la canción. Por favor, intenta de nuevo.');
+  console.error('Error al cargar el archivo de audio.');
+}
+
+function draw() {
+  background(0);
+
+  if (song && song.isLoaded()) {
+    let level = amplitude.getLevel();
+    let spectrum = fft.analyze();
+    let bassEnergy = fft.getEnergy('bass');
+    let trebleEnergy = fft.getEnergy('treble');
+    
+    let bassInfluence = map(bassEnergy, 0, 255, -2, 2, true) + random(-0.5, 0.5); 
+    
+    let trebleInfluence = map(trebleEnergy, 0, 255, 0, -1, true); 
+    
+    if (trebleEnergy > 200) { 
+      for (let i = particles.length - 1; i >= 0; i--) {
+        let p = particles[i];
+        let newParticle = new FireParticle(p.position.x, p.position.y, p.size * 1.5);
+        newParticle.lifespan = p.lifespan / 2;
+        newParticle.color = color(255, 204, 0);
+        particles.push(newParticle);
+      }
+    }
+
+    zoff += 0.005;
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      let p = particles[i];
+      
+      let horizontalForce = createVector(bassInfluence, 0);
+      p.applyForce(horizontalForce);
+      
+      let x = map(p.position.x, 0, width, 0, 10);
+      let y = map(p.position.y, 0, height, 0, 10);
+      let angle = noise(x, y, zoff) * TWO_PI;
+      let flickerForce = p5.Vector.fromAngle(angle);
+      flickerForce.mult(0.5);
+      p.applyForce(flickerForce);
+
+      let growth = createVector(0, -0.1 + trebleInfluence); 
+      p.applyForce(growth);
+      
+      p.run();
+
+      if (p.isDead()) {
+        particles.splice(i, 1);
+        particles.push(new FireParticle(random(width), height, random(5, 12)));
+      }
+    }
+  } else {
+    fill(255);
+    textAlign(CENTER);
+    textSize(20);
+    text('Por favor, sube una canción para encender la fogata.', width / 2, height / 2);
+  }
+}
+```
+- style
+```js
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Evita barras de desplazamiento */
+}
+canvas {
+  display: block;
+}
+#status { 
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-family: monospace;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 1000; /* Asegura que esté por encima de todo */
+}
+```
