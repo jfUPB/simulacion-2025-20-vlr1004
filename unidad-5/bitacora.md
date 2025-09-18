@@ -604,9 +604,9 @@ class Emitter {
 ## Actividad 3
 
 ### Concepto:
-Primero: Arte desde la punta de tu dedo donde esté será el pincel. 
-Segundo: Cesped para descansar, un relajante visualizador donde se interactua con el aire.
-Tercero (El elegido): Una fogata sonora, para relajar la mente con la muscia y las visuales.  
+**Primero:** Arte desde la punta de tu dedo donde esté será el pincel.   
+**Segundo:** Cesped para descansar, un relajante visualizador donde se interactua con el aire.  
+**Tercero (El elegido):** Una fogata sonora, para relajar la mente con la muscia y las visuales.    
 
 *Fogata Sonora*: La obra busca comunicar una sensación de calma, calidez y conexión con la música, como si estuvieras sentado frente a una fogata en una noche tranquila. El movimiento de las "llamas" es suave y constante, pero reacciona de manera perceptible a los cambios en la música, creando una experiencia interactiva y relajante.
 
@@ -865,5 +865,6 @@ https://editor.p5js.org/vlr1004/sketches/jKvpUxq-g
 
 ### Captura de Pantalla 
 <img width="895" height="622" alt="image" src="https://github.com/user-attachments/assets/8fed1012-40d3-45b5-b2fd-09269e0400f5" />
+
 
 
