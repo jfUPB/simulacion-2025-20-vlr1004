@@ -7,3 +7,6 @@
 
 # Actividad 2
 
+1. ¿Qué es una fuerza de dirección (steering force)?
+2. ¿Qué diferencia tiene este tipo de fuerza con las que ya hemos estudiado en el contexto de la simulación de agentes?
+3. ¿Qué relación tiene la steering force con Craig Reynolds y su trabajo en simulación de comportamiento animal?
