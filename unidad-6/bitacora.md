@@ -5,4 +5,5 @@
 - ¿Qué me inspira su trabajo?
   > Me gusta mucho las formas creadas, sus obras parecen pinceladas, texturas y patrones. Cuando utiliza color me recuerda al impresionismo, una rama del arte que en lo personal me gusta mucho.
 
-#Actividad 2
+# Actividad 2
+
