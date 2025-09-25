@@ -8,5 +8,8 @@
 # Actividad 2
 
 1. ¿Qué es una fuerza de dirección (steering force)?
+> Es una fuerza de dirección, con esta ecuación: Fuerza de dirección=Velocidad Deseada−Velocidad Actual. Guia el movimiento con su aceleración hacia un objeto deseado.  
 2. ¿Qué diferencia tiene este tipo de fuerza con las que ya hemos estudiado en el contexto de la simulación de agentes?
+> Diferenciada porque los calculos de las fuerzas es realizada por el propio agente. No representa una interacción física directa, sino una estrategia para mover al agente de forma “creíble” o “intencional”.
 3. ¿Qué relación tiene la steering force con Craig Reynolds y su trabajo en simulación de comportamiento animal?
+> El es pionero en el uso de esta fuerza, el creó el modelo de Boids; lo que ayudo a que la idea de steering force se convirtió en la base de cómo simulamos movimientos colectivos en IA, animación, videojuegos y robótica.
