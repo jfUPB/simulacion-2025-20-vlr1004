@@ -19,3 +19,7 @@
 2. Describe con tus palabras cómo un agente utiliza el campo para calcular su fuerza de dirección.
 3. Lista los parámetros clave identificados (resolución, maxspeed, maxforce).
 4. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el movimiento y comportamiento colectivo de los agentes. Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.
+
+# Actividad 4
+
+# Apply: Actividad 5
