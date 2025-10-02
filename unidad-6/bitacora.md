@@ -269,12 +269,13 @@ class Boid {
 
 # Apply: Actividad 5
 1. Documenta todo el proceso de diseño y creación en tu bitácora, incluyendo bocetos y decisiones de diseño.  
-  a. Elige un tema musical que te inspire.
+  a. Elige un tema musical que te inspire.  
   b. Diseña una pieza de arte generativo que utilice el algoritmo de flow fields y/o flocking.  
   c. Vas a visualizar el tema musical y además vas a “tocar” las visuales, es decir, tu pieza de arte debe ser interactiva y debe permitir la interpretación en tiempo real de las visuales como si fuera un instrumento más que acompaña de manera coherente el tema musical.
 > Voy a elegir la canción de Milo J "Gil". Teniendo en cuenta que la obra generativa parte de ser un instrumento más que acompaña de manera coherente el tema musical, quiero hacer un sintetizador que cambie el pitch pero tambien las visuales de la obra generativa
 2. El código fuente completo de tu sketch en p5.js.
 3. Un enlace a tu sketch en el editor de p5.js.
 4. Capturas de pantalla mostrando tu pieza en acción.
+
 
 
