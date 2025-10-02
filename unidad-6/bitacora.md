@@ -496,6 +496,23 @@ class Boid {
 > <img width="842" height="449" alt="image" src="https://github.com/user-attachments/assets/daf95743-fdf9-486f-8a05-e5f9ed73e93d" />
 
 
+# Autoevaluación
+> Durante el desarrollo de todas las actividades propuestas logré cumplir con cada uno de los objetivos y entregables solicitados por el profesor, integrando no solo el contenido mínimo, sino también exploraciones adicionales para enriquecer el resultado. Por estas razones considero que mi desempeño corresponde a la calificación máxima **(5.0)**.
+
+> Actividad 1 – Fuerzas de dirección (Steering Forces)
+Expliqué con claridad el concepto de fuerza de dirección, la diferencié de las fuerzas tradicionales vistas en clase y la relacioné con el trabajo de Craig Reynolds. La respuesta es completa, precisa y conectada con ejemplos prácticos de simulación de agentes.
+
+> Actividad 2 – Campo de flujo (Flow Field)  
+Analicé el código del ejemplo del Flow Field, identifiqué la estructura de datos utilizada y describí cómo se generan los vectores. Además, expliqué cómo un agente usa el campo para calcular su fuerza de dirección e identifiqué correctamente los parámetros clave. Realicé modificaciones al código y documenté con capturas y fragmentos de código los efectos obtenidos.
+
+> Actividad 3 – Modificación de parámetros  
+Apliqué cambios a los valores de maxspeed y maxforce en los vehículos, describiendo en mi bitácora el impacto de dichos cambios en el comportamiento de los agentes. Esto demuestra comprensión del modelo y experimentación controlada.
+
+> Actividad 4 – Flocking (Separación, Alineación y Cohesión)  
+Ejecuté y estudié el ejemplo de flocking de “The Nature of Code”. Identifiqué las tres reglas fundamentales y las expliqué con mis propias palabras, detallando la lógica de cálculo de cada una. Ubique los parámetros clave (radio de percepción, pesos de las reglas, maxspeed, maxforce) y realicé modificaciones drásticas en estos valores, documentando con capturas cómo cambia el comportamiento colectivo (dispersión, formación de grupos, movimientos caóticos).
+
+>Actividad 5 – Arte generativo interactivo  
+Diseñé una pieza de arte generativo basada en flocking y flow fields inspirada en la canción “Gil” de Milo J. Implementé la carga de un archivo MP3 desde mi computador para que se reproduzca automáticamente y utilicé la amplitud de sonido para sincronizar las visuales con el beat de la música. Añadí controles interactivos con teclado y mouse para que la pieza se pueda “tocar” en tiempo real como un instrumento visual, cumpliendo exactamente con lo solicitado por el profesor. Documenté el proceso con código completo, capturas y explicación de decisiones de diseño.
 
 
 
