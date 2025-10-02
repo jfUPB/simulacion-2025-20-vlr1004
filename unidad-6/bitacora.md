@@ -272,10 +272,229 @@ class Boid {
   a. Elige un tema musical que te inspire.  
   b. Diseña una pieza de arte generativo que utilice el algoritmo de flow fields y/o flocking.  
   c. Vas a visualizar el tema musical y además vas a “tocar” las visuales, es decir, tu pieza de arte debe ser interactiva y debe permitir la interpretación en tiempo real de las visuales como si fuera un instrumento más que acompaña de manera coherente el tema musical.
-> Voy a elegir la canción de Milo J "Gil". Teniendo en cuenta que la obra generativa parte de ser un instrumento más que acompaña de manera coherente el tema musical, quiero hacer un sintetizador que cambie el pitch pero tambien las visuales de la obra generativa, va a funcionar con el teclado (wasd)
+> Voy a elegir la canción de Milo J "Gil". Teniendo en cuenta que la obra generativa parte de ser un instrumento más que acompaña de manera coherente el tema musical, va ser un cambio visual donde se podra subir la canción. Los boids se mueven y reaccionan al nivel de audio. La interactividad corresponde al uso del mouse que cambia el color y grosor dependiendo de como se mueva, y las letras "WASD" que frenan/aceleran y rotan el enjambre.
 2. El código fuente completo de tu sketch en p5.js.
+> Sketch.js 
+ ```js
+let flock;
+let song;
+let amp;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 255);
+
+  flock = new Flock();
+  for (let i = 0; i < 150; i++) {
+    flock.addBoid(new Boid(random(width), random(height)));
+  }
+
+  // input para cargar audio
+  let fileInput = createFileInput(handleFile);
+  fileInput.position(10, 10);
+
+  amp = new p5.Amplitude();
+}
+
+function handleFile(file) {
+  if (file.type === 'audio') {
+    if (song) {
+      song.stop();
+    }
+    song = loadSound(file.data, () => {
+      song.loop(); // reproduce automáticamente
+    });
+  }
+}
+
+function draw() {
+  background(0, 40); // cola para efecto
+  flock.run();
+
+  // nivel de audio (beat)
+  let level = amp.getLevel();
+  let size = map(level, 0, 0.3, 2, 20); // tamaño reacciona al beat
+
+  let hueValue = map(mouseY, 0, height, 0, 255); // color con mouse
+  let weight = map(mouseX, 0, width, 1, 10);     // grosor con mouse
+
+  // dibuja cada boid como punto “instrumento”
+  for (let b of flock.boids) {
+    stroke(hueValue, 255, 255);
+    strokeWeight(size + weight);
+    point(b.position.x, b.position.y);
+  }
+
+  // controles WASD como “instrumento”:
+  if (keyIsDown(65)) { // A - rota izquierda
+    for (let b of flock.boids) b.velocity.rotate(-0.05);
+  }
+  if (keyIsDown(68)) { // D - rota derecha
+    for (let b of flock.boids) b.velocity.rotate(0.05);
+  }
+  if (keyIsDown(87)) { // W - acelera “sube intensidad”
+    for (let b of flock.boids) b.maxspeed = 7;
+  }
+  if (keyIsDown(83)) { // S - frena “baja intensidad”
+    for (let b of flock.boids) b.maxspeed = 2;
+  }
+}
+
+ ```
+> Folck
+ ```js
+class Flock {
+  constructor() {
+    this.boids = [];
+  }
+
+  addBoid(b) {
+    this.boids.push(b);
+  }
+
+  run() {
+    for (let boid of this.boids) {
+      boid.edges();
+      boid.flock(this.boids);
+      boid.update();
+      boid.show();
+    }
+  }
+}
+
+ ```
+> Boild
+ ```js
+class Boid {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.velocity = p5.Vector.random2D();
+    this.velocity.setMag(random(2, 4));
+    this.acceleration = createVector(0, 0);
+    this.maxForce = 0.3;
+    this.maxSpeed = 4;
+  }
+
+  edges() {
+    if (this.position.x > width) this.position.x = 0;
+    if (this.position.x < 0) this.position.x = width;
+    if (this.position.y > height) this.position.y = 0;
+    if (this.position.y < 0) this.position.y = height;
+  }
+
+  align(boids) {
+    let perceptionRadius = 50;
+    let steering = createVector();
+    let total = 0;
+    for (let other of boids) {
+      let d = dist(
+        this.position.x,
+        this.position.y,
+        other.position.x,
+        other.position.y
+      );
+      if (other != this && d < perceptionRadius) {
+        steering.add(other.velocity);
+        total++;
+      }
+    }
+    if (total > 0) {
+      steering.div(total);
+      steering.setMag(this.maxSpeed);
+      steering.sub(this.velocity);
+      steering.limit(this.maxForce);
+    }
+    return steering;
+  }
+
+  cohesion(boids) {
+    let perceptionRadius = 50;
+    let steering = createVector();
+    let total = 0;
+    for (let other of boids) {
+      let d = dist(
+        this.position.x,
+        this.position.y,
+        other.position.x,
+        other.position.y
+      );
+      if (other != this && d < perceptionRadius) {
+        steering.add(other.position);
+        total++;
+      }
+    }
+    if (total > 0) {
+      steering.div(total);
+      steering.sub(this.position);
+      steering.setMag(this.maxSpeed);
+      steering.sub(this.velocity);
+      steering.limit(this.maxForce);
+    }
+    return steering;
+  }
+
+  separation(boids) {
+    let perceptionRadius = 30;
+    let steering = createVector();
+    let total = 0;
+    for (let other of boids) {
+      let d = dist(
+        this.position.x,
+        this.position.y,
+        other.position.x,
+        other.position.y
+      );
+      if (other != this && d < perceptionRadius) {
+        let diff = p5.Vector.sub(this.position, other.position);
+        diff.div(d * d);
+        steering.add(diff);
+        total++;
+      }
+    }
+    if (total > 0) {
+      steering.div(total);
+      steering.setMag(this.maxSpeed);
+      steering.sub(this.velocity);
+      steering.limit(this.maxForce);
+    }
+    return steering;
+  }
+
+  flock(boids) {
+    let alignment = this.align(boids);
+    let cohesion = this.cohesion(boids);
+    let separation = this.separation(boids);
+
+    // pesos: aquí puedes experimentar
+    alignment.mult(1.0);
+    cohesion.mult(0.8);
+    separation.mult(1.5);
+
+    this.acceleration.add(alignment);
+    this.acceleration.add(cohesion);
+    this.acceleration.add(separation);
+  }
+
+  update() {
+    this.position.add(this.velocity);
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.maxSpeed);
+    this.acceleration.mult(0);
+  }
+
+  show() {
+    strokeWeight(6);
+    stroke(255, 100, 100, 200);
+    point(this.position.x, this.position.y);
+  }
+}
+
+ ```
 3. Un enlace a tu sketch en el editor de p5.js.
+> https://editor.p5js.org/vlr1004/sketches/4FZNLIhwz
 4. Capturas de pantalla mostrando tu pieza en acción.
+> <img width="842" height="449" alt="image" src="https://github.com/user-attachments/assets/daf95743-fdf9-486f-8a05-e5f9ed73e93d" />
+
 
 
 
