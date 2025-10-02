@@ -42,16 +42,229 @@ Nature of Code
 Nature of Code
 
 4. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el movimiento y comportamiento colectivo de los agentes. Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.
+> Al reducir el radio r de 6 a 0.6 los agentes se dibujan mucho más pequeños, por lo que visualmente parecen partículas diminutas y se perciben más numerosos o “finos”. Al mismo tiempo, al aumentar maxforce de un valor bajo (por ejemplo 0.1–0.3) a 6, cada agente puede cambiar su aceleración casi instantáneamente: gira mucho más brusco, sigue el campo de flujo con movimientos rápidos y angulosos y responde de forma extremadamente sensible a las variaciones del campo. En conjunto, el resultado es un movimiento más caótico y reactivo, con trayectorias menos suaves y con agentes que parecen “vibrar” o zigzaguear en lugar de deslizarse lentamente.
+> <img width="763" height="285" alt="image" src="https://github.com/user-attachments/assets/b1c700c4-f83c-4692-a46a-7bb1786018fa" />
+```js
+class Vehicle {
+constructor(x, y, ms, mf) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(0, 0);
+    this.r = 0.6;
+    this.maxspeed = 4;
+    this.maxforce = 6;
+  }
+
+ ```
+
 
 # Actividad 4
 1. Explica con tus palabras el objetivo y la lógica general de cálculo de cada una de las tres reglas de Flocking (Separación, Alineación, Cohesión).
+> Separation  
+Objetivo: evitar el hacinamiento; que cada boid no choque ni quede pegado a vecinos muy cercanos.  
+Lógica de cálculo: para cada vecino demasiado cercano, el boid calcula un vector que apunta hacia afuera (de sí mismo hacia la posición opuesta del vecino), lo pondera (por ejemplo inversamente proporcional a la distancia) y suma/normaliza esas contribuciones. El resultado es una fuerza que empuja al boid lejos de los vecinos próximos.
 
+> Alignment  
+Objetivo: alinear la dirección/velocidad del boid con la del grupo para que se muevan en la misma dirección.  
+Lógica de cálculo: el boid promedia las velocidades de sus vecinos dentro de su radio de percepción y crea una velocidad deseada igual a ese promedio (normalizada a la maxspeed). La steering force es la diferencia entre esa velocidad deseada y la velocidad actual.
+
+> Cohesion  
+Objetivo: mantener unida la banda; mover al boid hacia el “centro de masa” local de sus vecinos.  
+Lógica de cálculo: el boid promedia las posiciones de sus vecinos (centro local) y calcula un vector seek que lo lleva hacia ese punto medio. Ese seek se convierte en la fuerza de cohesión (otra steering force).
 
 2. Lista los parámetros clave identificados (radio de percepción, pesos de las reglas, maxspeed, maxforce).
 
+> perceptionRadius (o neighbourDist) — radio de percepción; define cuáles otros boids se consideran “vecinos”. Controla el alcance de separación/alineación/cohesión. (valores típicos: 25–80 px).
+
+> desiredSeparation — distancia mínima deseada para la separación (ej. 20–30 px).
+
+> separationWeight, alignmentWeight, cohesionWeight — multiplicadores que ponderan la influencia de cada regla cuando se combinan. Si uno es alto dominará la dinámica.
+
+> maxspeed — velocidad máxima del boid (controla ritmo general).
+
+> maxforce — magnitud máxima de la steering force (controla la maniobrabilidad; valores pequeños → giros suaves; valores grandes → giros bruscos).
 
 3. Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.
 
+> Los boids ahora son más pequeños y avanzan más lentamente, lo que da una sensación de bandada más “lenta y fina”. Al aumentar el radio de alineación tienden a orientarse con muchos más vecinos, por lo que se mueven más en direcciones parecidas, pero al reducir el radio de cohesión no se acercan tanto a un centro común. El resultado es que las bandadas son más sueltas y extendidas, se mueven de forma ordenada (alineadas) pero menos compactas y con menos tendencia a formar grupos muy apretados.
+> <img width="602" height="283" alt="image" src="https://github.com/user-attachments/assets/4238f85f-e3ae-45b0-8bbc-07d502f9bde7" />
+ ```js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Boid class
+// Methods for Separation, Cohesion, Alignment added
+
+class Boid {
+  constructor(x, y) {
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 1));
+    this.position = createVector(x, y);
+    this.r = 2;
+    this.maxspeed = 1; // Maximum speed
+    this.maxforce = 0.05; // Maximum steering force
+  }
+
+  run(boids) {
+    this.flock(boids);
+    this.update();
+    this.borders();
+    this.show();
+  }
+
+  applyForce(force) {
+    // We could add mass here if we want A = F / M
+    this.acceleration.add(force);
+  }
+
+  // We accumulate a new acceleration each time based on three rules
+  flock(boids) {
+    let sep = this.separate(boids); // Separation
+    let ali = this.align(boids); // Alignment
+    let coh = this.cohere(boids); // Cohesion
+    // Arbitrarily weight these forces
+    sep.mult(1.5);
+    ali.mult(1.0);
+    coh.mult(1.0);
+    // Add the force vectors to acceleration
+    this.applyForce(sep);
+    this.applyForce(ali);
+    this.applyForce(coh);
+  }
+
+  // Method to update location
+  update() {
+    // Update velocity
+    this.velocity.add(this.acceleration);
+    // Limit speed
+    this.velocity.limit(this.maxspeed);
+    this.position.add(this.velocity);
+    // Reset accelertion to 0 each cycle
+    this.acceleration.mult(0);
+  }
+
+  // A method that calculates and applies a steering force towards a target
+  // STEER = DESIRED MINUS VELOCITY
+  seek(target) {
+    let desired = p5.Vector.sub(target, this.position); // A vector pointing from the location to the target
+    // Normalize desired and scale to maximum speed
+    desired.normalize();
+    desired.mult(this.maxspeed);
+    // Steering = Desired minus Velocity
+    let steer = p5.Vector.sub(desired, this.velocity);
+    steer.limit(this.maxforce); // Limit to maximum steering force
+    return steer;
+  }
+
+  show() {
+    // Draw a triangle rotated in the direction of velocity
+    let angle = this.velocity.heading();
+    fill(127);
+    stroke(0);
+    push();
+    translate(this.position.x, this.position.y);
+    rotate(angle);
+    beginShape();
+    vertex(this.r * 4, 0);
+    vertex(-this.r * 2, -this.r);
+    vertex(-this.r * 2, this.r);
+    endShape(CLOSE);
+    pop();
+  }
+
+  // Wraparound
+  borders() {
+    if (this.position.x < -this.r) this.position.x = width + this.r;
+    if (this.position.y < -this.r) this.position.y = height + this.r;
+    if (this.position.x > width + this.r) this.position.x = -this.r;
+    if (this.position.y > height + this.r) this.position.y = -this.r;
+  }
+
+  // Separation
+  // Method checks for nearby boids and steers away
+  separate(boids) {
+    let desiredSeparation = 25;
+    let steer = createVector(0, 0);
+    let count = 0;
+    // For every boid in the system, check if it's too close
+    for (let i = 0; i < boids.length; i++) {
+      let d = p5.Vector.dist(this.position, boids[i].position);
+      // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
+      if (d > 0 && d < desiredSeparation) {
+        // Calculate vector pointing away from neighbor
+        let diff = p5.Vector.sub(this.position, boids[i].position);
+        diff.normalize();
+        diff.div(d); // Weight by distance
+        steer.add(diff);
+        count++; // Keep track of how many
+      }
+    }
+    // Average -- divide by how many
+    if (count > 0) {
+      steer.div(count);
+    }
+
+    // As long as the vector is greater than 0
+    if (steer.mag() > 0) {
+      // Implement Reynolds: Steering = Desired - Velocity
+      steer.normalize();
+      steer.mult(this.maxspeed);
+      steer.sub(this.velocity);
+      steer.limit(this.maxforce);
+    }
+    return steer;
+  }
+
+  // Alignment
+  // For every nearby boid in the system, calculate the average velocity
+  align(boids) {
+    let neighborDistance = 65;
+    let sum = createVector(0, 0);
+    let count = 0;
+    for (let i = 0; i < boids.length; i++) {
+      let d = p5.Vector.dist(this.position, boids[i].position);
+      if (d > 0 && d < neighborDistance) {
+        sum.add(boids[i].velocity);
+        count++;
+      }
+    }
+    if (count > 0) {
+      sum.div(count);
+      sum.normalize();
+      sum.mult(this.maxspeed);
+      let steer = p5.Vector.sub(sum, this.velocity);
+      steer.limit(this.maxforce);
+      return steer;
+    } else {
+      return createVector(0, 0);
+    }
+  }
+
+  // Cohesion
+  // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
+  cohere(boids) {
+    let neighborDistance = 30;
+    let sum = createVector(0, 0); // Start with empty vector to accumulate all locations
+    let count = 0;
+    for (let i = 0; i < boids.length; i++) {
+      let d = p5.Vector.dist(this.position, boids[i].position);
+      if (d > 0 && d < neighborDistance) {
+        sum.add(boids[i].position); // Add location
+        count++;
+      }
+    }
+    if (count > 0) {
+      sum.div(count);
+      return this.seek(sum); // Steer towards the location
+    } else {
+      return createVector(0, 0);
+    }
+  }
+}
+
+
+ ```
 
 
 # Apply: Actividad 5
@@ -62,3 +275,4 @@ Nature of Code
 2. El código fuente completo de tu sketch en p5.js.
 3. Un enlace a tu sketch en el editor de p5.js.
 4. Capturas de pantalla mostrando tu pieza en acción.
+
