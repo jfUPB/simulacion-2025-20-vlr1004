@@ -23,4 +23,8 @@
 2. Ideas propias
 
 > Mouse: donde la "o" es un ratón, hacerla mas ovalada y que la "s" sea su cola
-> 
+> Montaña: utilizar la "M" como referencia a una montaña, hacerla más gruesa y grande y que las otras letras parezca que la estan escalando
+
+
+# Actividad 2
+
