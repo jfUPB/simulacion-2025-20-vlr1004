@@ -21,3 +21,6 @@
 
 
 2. Ideas propias
+
+> Mouse: donde la "o" es un ratón, hacerla mas ovalada y que la "s" sea su cola
+> 
