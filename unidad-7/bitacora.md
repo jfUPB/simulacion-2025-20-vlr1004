@@ -30,11 +30,102 @@
 
 1. Muestra el código de los dos (o más) experimentos básicos que replicaste integrando Matter.js y p5.js.
 > Codigo 1
+``` Sketch.js
+const {Engine, Body, Bodies, Composite} = Matter;
 
+let engine;
+let boxes = [];
+let ground;
+
+
+function setup() {
+  createCanvas(400,400);
+  engine = Engine.create();
+  
+  ground = new Ground (200, 300, 400, 10);
+
+
+  
+}
+
+
+function draw(){
+  background(220); 
+  Engine.update(engine);
+  
+  for(let i=0; i<boxes.length; i++){
+      boxes[i].display();
+      }
+  ground.display();
+}
+
+function mousePressed() {
+  boxes.push(new Rect(mouseX, mouseY, 20, 20));
+}
+
+```
+
+```ground.js
+class Ground {
+  constructor(x, y, w, h){
+    this.w = w;
+    this.h = h;
+    
+    
+    this.ground = Bodies.rectangle(x, y, this.w, this.h, { isStatic: true });
+    Composite.add(engine.world, this.ground);
+
+  }
+  
+  display(){
+    push();
+    rectMode(CENTER);
+    let x = this.ground.position.x;
+    let y = this.ground.position.y;
+    let angle = this.ground.angle;
+
+
+    translate(x, y);
+    rotate(angle);
+    rect(0, 0, this.w, this.h);
+    pop();
+  }
+}
+```
+```rect.js
+class Rect {
+  constructor(x, y, w, h){
+    this.w = w;
+    this.h = h;
+    
+  this.body = Bodies.rectangle(x, y, this.w, this.h);
+  Body.setAngularVelocity(this.body, 0.2);  
+  Composite.add(engine.world, this.body);
+  
+  }
+  
+  display(){
+    push();
+    rectMode(CENTER);
+    let x = this.body.position.x;
+    let y = this.body.position.y;
+    let angle = this.body.angle;
+
+
+    translate(x, y);
+    rotate(angle);
+    rect(0, 0, this.w, this.h);
+    pop();
+  
+    
+  }
+}
+```
 2. Incluye una **captura de pantalla o ENLACE a un GIF (no olvides, enlace) de cada experimento funcionando.
 > Ejemplo 1: the basic (que tambien hace referencia al video de Patt Vira)
 <img width="426" height="419" alt="image" src="https://github.com/user-attachments/assets/c0a06eff-3617-4c4f-af8e-9fb6968b8e6c" />
 
 3. Proporciona tu explicación clara y concisa de los conceptos clave (Engine, World, Bodies, Constraint, MouseConstraint).
 4. Menciona brevemente cualquier dificultad encontrada al configurar o usar Matter.js inicialmente.
+
 
