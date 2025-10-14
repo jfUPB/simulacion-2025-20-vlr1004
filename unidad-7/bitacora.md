@@ -262,7 +262,14 @@ function drawBodies(bodies) {
 <img width="808" height="723" alt="image" src="https://github.com/user-attachments/assets/bb97e269-19a3-432a-b1ff-31725adc659b" />
 
 3. Proporciona tu explicación clara y concisa de los conceptos clave (Engine, World, Bodies, Constraint, MouseConstraint).
+> Engine: Es el encargado de crear y actualizar las fisicas del mundo.
+> World: Es donde se aplican las fuerzas del engine y aquí se crean los objetos que se van a ver afectador por ella. También aquí es donde se agregan o elimian los objetos.
+> Bodies: Son los objetos con los que se aplican las fisicas para así interactuar en el mundo
+> Constraint: Define como dos objetos van a interactuar entre ellos, puede hacer que sea una unión o una limitación.
+> MouseConstraint: Es lo que ayuda al usuario a interactuar con los objetos de la simulación. Es como `constrain` que funciona con el mouse y el cuerpo más cercano.
+
 4. Menciona brevemente cualquier dificultad encontrada al configurar o usar Matter.js inicialmente.
+> Inicialmente al seguir el ejemplo con Patt Vita con sus explicaciones se me hizo muy facil colocarlo en p5js y entender que hacer. Cuando ya quise hacer algo parecido que ella se me dificulto. 
 
 
 
