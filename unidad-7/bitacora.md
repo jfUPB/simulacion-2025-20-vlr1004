@@ -29,6 +29,12 @@
 # Actividad 2
 
 1. Muestra el código de los dos (o más) experimentos básicos que replicaste integrando Matter.js y p5.js.
+> Codigo 1
+
 2. Incluye una **captura de pantalla o ENLACE a un GIF (no olvides, enlace) de cada experimento funcionando.
+> Ejemplo 1: the basic (que tambien hace referencia al video de Patt Vira)
+<img width="426" height="419" alt="image" src="https://github.com/user-attachments/assets/c0a06eff-3617-4c4f-af8e-9fb6968b8e6c" />
+
 3. Proporciona tu explicación clara y concisa de los conceptos clave (Engine, World, Bodies, Constraint, MouseConstraint).
 4. Menciona brevemente cualquier dificultad encontrada al configurar o usar Matter.js inicialmente.
+
