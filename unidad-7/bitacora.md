@@ -121,11 +121,148 @@ class Rect {
   }
 }
 ```
+
+> Ejemplo 2. 
+``` sketch.js
+// Alias para Matter.js (lo mismo que en tu código original)
+var Engine = Matter.Engine,
+    World = Matter.World, // Usaremos World en lugar de Composite.add
+    Bodies = Matter.Bodies;
+
+// Variables globales para la simulación
+var engine;
+var world;
+var boxes = []; // Arreglo para guardar los cuerpos
+var ground;     // La base o pared inferior
+
+// La función setup se ejecuta una vez al inicio
+function setup() {
+    // 1. Configuración del Canvas de p5.js (en lugar de Matter.Render)
+    createCanvas(800, 600);
+    rectMode(CENTER); // Dibujar rectángulos desde su centro para mayor facilidad
+
+    // 2. Crear el motor de física
+    engine = Engine.create();
+    world = engine.world;
+    
+    // Configurar la gravedad (opcional, por defecto ya es 1)
+    // world.gravity.y = 1;
+
+    // 3. Crear los cuerpos
+    
+    // ** Bloques cayendo (con diferente frictionAir) **
+    // Bloque 1: Poca fricción de aire (cae más rápido)
+    let boxA = Bodies.rectangle(200, 100, 60, 60, { frictionAir: 0.001, render: { fillStyle: 'red' } });
+    // Bloque 2: Fricción de aire media
+    let boxB = Bodies.rectangle(400, 100, 60, 60, { frictionAir: 0.05, render: { fillStyle: 'green' } });
+    // Bloque 3: Alta fricción de aire (cae más lento)
+    let boxC = Bodies.rectangle(600, 100, 60, 60, { frictionAir: 0.1, render: { fillStyle: 'blue' } });
+    
+    boxes.push(boxA, boxB, boxC); // Guardamos los cuerpos en un arreglo para dibujarlos
+
+    // ** Paredes (isStatic: true) **
+    // Nota: Matter.js usa el centro para posicionar. (x, y, ancho, alto)
+    let wallTop = Bodies.rectangle(400, 0, 800, 50, { isStatic: true, render: { fillStyle: '#333' } });
+    let wallBottom = Bodies.rectangle(400, 600, 800, 50, { isStatic: true, render: { fillStyle: '#333' } });
+    let wallRight = Bodies.rectangle(800, 300, 50, 600, { isStatic: true, render: { fillStyle: '#333' } });
+    let wallLeft = Bodies.rectangle(0, 300, 50, 600, { isStatic: true, render: { fillStyle: '#333' } });
+
+    // 4. Agregar todos los cuerpos al mundo
+    World.add(world, [boxA, boxB, boxC, wallTop, wallBottom, wallRight, wallLeft]);
+    
+    // 5. Configurar el MouseConstraint (para arrastrar cuerpos)
+    // p5.js no maneja el canvas como un elemento del DOM de forma nativa para Matter.js,
+    // por lo que usamos la función 'getElement' para obtener el canvas DOM.
+    var canvasDom = document.getElementById("defaultCanvas0"); // El ID por defecto de p5.js
+    var mouse = Matter.Mouse.create(canvasDom);
+    var mouseConstraint = Matter.MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+            stiffness: 0.2,
+            render: {
+                visible: false
+            }
+        }
+    });
+
+    World.add(world, mouseConstraint);
+    
+    // Opcional: Para que p5.js muestre la posición del mouse
+    mouse.pixelRatio = pixelDensity();
+}
+
+
+// La función draw se ejecuta continuamente (aproximadamente 60 veces por segundo)
+function draw() {
+    background(220); // Limpia el fondo
+
+    // 1. Actualizar el motor de física (Esto reemplaza a Matter.Runner.run)
+    Engine.update(engine);
+    
+    // 2. Dibujar todos los cuerpos
+    drawBodies(world.bodies);
+    
+    // Opcional: Mostrar la velocidad como en tu ejemplo original
+    // Lo hacemos con texto para los bloques que caen
+    textSize(14);
+    fill(0);
+    textAlign(CENTER);
+    text("0.001 (Rápido)", boxes[0].position.x, boxes[0].position.y - 50);
+    text("0.05 (Medio)", boxes[1].position.x, boxes[1].position.y - 50);
+    text("0.1 (Lento)", boxes[2].position.x, boxes[2].position.y - 50);
+    text("Vel. Y: " + boxes[0].velocity.y.toFixed(2), boxes[0].position.x, boxes[0].position.y + 40);
+    text("Vel. Y: " + boxes[1].velocity.y.toFixed(2), boxes[1].position.x, boxes[1].position.y + 40);
+    text("Vel. Y: " + boxes[2].velocity.y.toFixed(2), boxes[2].position.x, boxes[2].position.y + 40);
+}
+
+
+// Función auxiliar para dibujar los cuerpos
+function drawBodies(bodies) {
+    for (var i = 0; i < bodies.length; i++) {
+        var body = bodies[i];
+        
+        // No dibujar los cuerpos que solo sirven para la restricción del mouse
+        if (body.label === 'Mouse Constraint') continue;
+
+        // Obtener la posición del cuerpo
+        var pos = body.position;
+        var angle = body.angle;
+
+        push(); // Guarda la configuración de dibujo actual
+        translate(pos.x, pos.y); // Mueve el origen al centro del cuerpo
+        rotate(angle); // Rota según el ángulo del cuerpo
+
+        // Dibujo
+        stroke(0); // Borde negro
+        
+        // Usar el color del render si está definido, si no, uno por defecto
+        if (body.render && body.render.fillStyle) {
+            fill(body.render.fillStyle);
+        } else {
+            fill(120); // Color por defecto gris
+        }
+        
+        // Dibujar el rectángulo (asumimos que todos son rectángulos en este ejemplo)
+        // Matter.js usa 'bounds' para el tamaño, pero si es un rectángulo simple
+        // podemos usar width/height, o calcularlo desde los vértices.
+        // Asumiendo que todos los cuerpos son rectángulos con su ancho y alto
+        // (Esto es una simplificación, para formas complejas se necesita iterar los vértices)
+        rect(0, 0, body.bounds.max.x - body.bounds.min.x, body.bounds.max.y - body.bounds.min.y);
+
+        pop(); // Restaura la configuración de dibujo
+    }
+}
+```
+
 2. Incluye una **captura de pantalla o ENLACE a un GIF (no olvides, enlace) de cada experimento funcionando.
 > Ejemplo 1: the basic (que tambien hace referencia al video de Patt Vira)
 <img width="426" height="419" alt="image" src="https://github.com/user-attachments/assets/c0a06eff-3617-4c4f-af8e-9fb6968b8e6c" />
 
+> Ejemplo 2: ejemplo de la biblioteca de matter con ayuda de geminis :D
+<img width="808" height="723" alt="image" src="https://github.com/user-attachments/assets/bb97e269-19a3-432a-b1ff-31725adc659b" />
+
 3. Proporciona tu explicación clara y concisa de los conceptos clave (Engine, World, Bodies, Constraint, MouseConstraint).
 4. Menciona brevemente cualquier dificultad encontrada al configurar o usar Matter.js inicialmente.
+
 
 
