@@ -272,4 +272,169 @@ function drawBodies(bodies) {
 > Inicialmente al seguir el ejemplo con Patt Vita con sus explicaciones se me hizo muy facil colocarlo en p5js y entender que hacer. Cuando ya quise hacer algo parecido que ella se me dificulto. 
 
 
+# Actividad 3
+1. Palabra:  
+> Montaña 
+2. Animación:  
+Opción 1
+> Cae la M y que parezca pesada, luego aparecen las otras letras
+> La M esta estatica pero se va moviendo solo el lado derecho para que luega aparezcan las otras letras y caigan ahi
+> La M surja desde abajo y las otras letras tiemblen cuando sube y que se pueda mover las otras letras menos la M 
+Opción 2:
+> La palabra MOUSE, se agarra la S y se estira para contectarla con la o y se convierte en ratón
+Opción 3.
+> La palabra BOUNCE, se mueve como un resorte entre más la agarra y luego se suelta para mostrar el rebote
+3. Aspectos claves
+> En la implementación, cada letra de la palabra se formó como un cuerpo rectangular de Matter.js, utilizando la función `Bodies.rectangle()` para representar su forma física dentro del motor. A cada letra se le asignaron propiedades como **restitution** (para controlar el rebote), **friction** (para simular la resistencia al contacto) y **isStatic** (para mantenerlas quietas hasta que se active la interacción). No se usaron restricciones (*constraints*) porque las letras se comportan como cuerpos independientes que responden libremente a la gravedad y las colisiones. Sin embargo, se aplicó una lógica visual de *squash & stretch* para simular deformaciones elásticas al impactar con el suelo, combinando física realista con animación expresiva.
+4. Codigo
+```js
+// --- Configuración Matter.js ---
+let Engine = Matter.Engine,
+  World = Matter.World,
+  Bodies = Matter.Bodies,
+  Body = Matter.Body,
+  Mouse = Matter.Mouse,
+  MouseConstraint = Matter.MouseConstraint;
 
+let engine, world;
+let boxes = [];
+let palabra = "bounce";
+let restPos = [];
+let stretching = false;
+let stretchAmount = 0;
+let floor;
+let releasing = false;
+let releaseIndex = 0;
+let lastReleaseTime = 0;
+
+function setup() {
+  createCanvas(800, 500);
+  engine = Engine.create();
+  world = engine.world;
+  Engine.run(engine);
+
+  // Crear piso (mitad de la pantalla)
+  floor = Bodies.rectangle(width / 2, height / 2 + 120, width, 20, {
+    isStatic: true,
+    restitution: 1,
+  });
+  World.add(world, floor);
+
+  // Crear letras centradas
+  let totalWidth = palabra.length * 60;
+  let startX = width / 2 - totalWidth / 2;
+
+  for (let i = 0; i < palabra.length; i++) {
+    let letra = palabra[i];
+    let box = Bodies.rectangle(startX + i * 60, height / 2, 50, 80, {
+      restitution: 0.8,
+      friction: 0.2,
+      isStatic: true,
+    });
+    box.label = letra;
+    box.squash = 1; // Para el squash/stretch visual
+    World.add(world, box);
+    boxes.push(box);
+    restPos.push({ x: box.position.x, y: box.position.y });
+  }
+
+  // Mouse setup
+  let canvasmouse = Mouse.create(canvas.elt);
+  canvasmouse.pixelRatio = pixelDensity();
+  let options = { mouse: canvasmouse };
+  let mConstraint = MouseConstraint.create(engine, options);
+  World.add(world, mConstraint);
+}
+
+function draw() {
+  background(245);
+
+
+
+  textAlign(CENTER, CENTER);
+  rectMode(CENTER);
+  textSize(60);
+
+  // Estiramiento mientras se mantiene presionado
+  if (stretching) {
+    stretchAmount = min(stretchAmount + 0.02, 0.6);
+  } else {
+    stretchAmount = max(stretchAmount - 0.05, 0);
+  }
+
+  // Si estamos soltando letras, hacerlo secuencialmente
+  if (releasing && millis() - lastReleaseTime > 180) {
+    if (releaseIndex < boxes.length) {
+      let b = boxes[releaseIndex];
+      Matter.Body.setStatic(b, false);
+      Body.applyForce(b, b.position, { x: 0, y: -0.15 - stretchAmount * 0.8 });
+      releaseIndex++;
+      lastReleaseTime = millis();
+    } else {
+      releasing = false;
+    }
+  }
+
+  // Dibujar letras con squash/stretch
+  for (let i = 0; i < boxes.length; i++) {
+    let b = boxes[i];
+
+    // Detectar si está cerca del piso (para squash visual)
+    let distToFloor = (height / 2 + 120) - b.position.y;
+    if (distToFloor < 45 && b.velocity.y > 0) {
+      b.squash = lerp(b.squash, 1.5, 0.3); // aplastamiento
+    } else {
+      b.squash = lerp(b.squash, 1, 0.1); // vuelve a la forma normal
+    }
+
+    push();
+    translate(b.position.x, b.position.y);
+    rotate(b.angle);
+
+    // Aplicar squash/stretch
+    scale(1.1 / b.squash, b.squash);
+
+    // Cuerpo
+    fill(30);
+    rect(0, 0, 50, 80, 10);
+
+    // Letra
+    fill(255);
+    text(b.label.toUpperCase(), 0, 10);
+    pop();
+
+    // Si la letra cae mucho, la regresamos
+    if (!b.isStatic && b.position.y > height) {
+      Matter.Body.setStatic(b, true);
+      Matter.Body.setPosition(b, restPos[i]);
+      Matter.Body.setVelocity(b, { x: 0, y: 0 });
+      Matter.Body.setAngle(b, 0);
+      b.squash = 1;
+    }
+  }
+}
+
+// --- Interacción ---
+function mousePressed() {
+  for (let b of boxes) {
+    let d = dist(mouseX, mouseY, b.position.x, b.position.y);
+    if (d < 50) {
+      stretching = true;
+      break;
+    }
+  }
+}
+
+function mouseReleased() {
+  if (stretching) {
+    stretching = false;
+    releasing = true;
+    releaseIndex = 0;
+    lastReleaseTime = millis();
+  }
+}
+
+
+```
+5. Captura de pantalla:
+<img width="763" height="570" alt="image" src="https://github.com/user-attachments/assets/d48713c1-8962-4cb9-83f9-20a9ddc84258" />
