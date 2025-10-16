@@ -443,3 +443,15 @@ function mouseReleased() {
 6. Link:  
 >  [Apply 7] (https://editor.p5js.org/vlr1004/sketches/vOApDG6S1)
 
+# Rubrica
+## Nota propuesta 
+5
+## Defensa
+**Actividad 1 – Análisis de ejemplos e ideas propias**
+Merezco la calificación de 5 en esta actividad porque no solo analicé cuidadosamente los ejemplos del proyecto *Word as Image* de Ji Lee, sino que expliqué con claridad cómo cada composición logra transmitir visualmente el significado de la palabra. En cada análisis identifiqué los recursos tipográficos y espaciales utilizados (proporción, posición, forma y color), evidenciando comprensión del concepto de tipografía semántica. Además, propuse mis propias ideas con creatividad y coherencia, demostrando que puedo aplicar el mismo principio de forma original. Mi trabajo refleja observación crítica, entendimiento del propósito comunicativo y capacidad para generar propuestas visuales efectivas.
+
+**Actividad 2 – Exploración y experimentación con Matter.js**
+En esta actividad demostré un dominio técnico sólido al integrar Matter.js con p5.js mediante dos experimentos funcionales. Repliqué ejemplos básicos y los adapté, evidenciando comprensión de los conceptos fundamentales del motor físico (Engine, World, Bodies, Constraint, MouseConstraint). Documenté con claridad el código, las capturas y las explicaciones, lo que muestra una comprensión profunda del funcionamiento del motor y su relación con la simulación física. También reflexioné sobre las dificultades iniciales y cómo las resolví, lo que evidencia mi autonomía y capacidad para aprender de manera práctica. Cumplí con todos los requisitos y además integré elementos adicionales, como comentarios y organización del código, que mejoran su legibilidad.
+
+**Actividad 3 – Animación tipográfica semántica**
+Mi proyecto final integra de forma creativa los conocimientos de diseño tipográfico y simulación física aprendidos durante la unidad. La animación de la palabra “BOUNCE” refleja con precisión su significado mediante comportamientos físicos coherentes —elasticidad, rebote y squash & stretch—, combinando realismo físico con expresividad visual. El código demuestra control sobre las propiedades físicas, la interacción del usuario y la sincronización de los cuerpos, evidenciando dominio tanto técnico como conceptual. Además, la propuesta transmite de manera visual y lúdica el sentido de la palabra, cumpliendo y superando los criterios del enunciado. Por esto considero que mi trabajo alcanza el nivel más alto de desempeño y merece la nota máxima.
