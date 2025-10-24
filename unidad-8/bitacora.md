@@ -2,7 +2,7 @@
 
 # Actividad 1
 1. Describe tus observaciones sobre la conexión sonido-imagen en al menos dos de las performances vistas.
-> Siento que la mayor conexión que tienen la sobras son el movimiento que tienen dependiendo de como este sonando, si suena bajito, normalmente se apaciguan los movimientos contrario a cuando esta más elevada la musica, pero tambien hace lo contraio a veces dando así el protagonismo a la voz más que a lo visual. Creo que depende más de lo que quiera dar a entender la artista, sus sentimientos del momentos y sus pensamientos.
+> Carles Viarnès & Alba G. Corral 360º AV Show y Dimension N - Alba G Corral [ES] & Makaruk. Siento que la mayor conexión que tienen las sobras son el movimiento que tienen dependiendo de como este sonando, si suena bajito, normalmente se apaciguan los movimientos contrario a cuando esta más elevada la musica, pero tambien hace lo contraio a veces dando así el protagonismo a la voz más que a lo visual. Creo que depende más de lo que quiera dar a entender la artista, sus sentimientos del momentos y sus pensamientos.
 2. Explica qué elementos te parecieron generativos y por qué crees que cada visualización sería única.
 > Las formas en la que aparecen las figuras, su manera unica de aparecer o moverse en diferentes direcciones. La paleta de colores, depende de su presentación note que utiliza una paleta de colores pero no le quita lo generativo, ya que varia entre esos colores para así dejar un mensaje. 
 3. Comparte tu reflexión sobre la sensación de “liveness”.
@@ -28,4 +28,5 @@ Capturas de pantalla mostrando tu pieza en acción.
 
 
 ## Defensa nota
+
 
