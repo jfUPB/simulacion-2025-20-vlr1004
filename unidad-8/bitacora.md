@@ -11,9 +11,20 @@
 
 # Actividad 2
 1. La pieza musical elegida (con enlace/archivo si es posible).
+> https://www.youtube.com/watch?v=pCBgcBXxCsI&list=RDpCBgcBXxCsI&start_radio=1
 2. La descripción de tu concepto visual.
+> Quiero seguir el concepto de la canción. DPR Ian lleva un mundo caotico lleno de reflejos, una paleta de colores brillante pero oscura. Quiero que sea como un mundo caotico lleno de dulces, que reflejen con el color lo bueno y lo malo, un mundo sin reglas pero que a la vez las necesita. 
 3. Los inputs seleccionados y la justificación de por qué los elegiste.
+> Teclado (flechas): quiero utilizarlos para cambiar del lado oscuro al "orden".  
+> Teclado (Tecla A): creación de particulas.     
+> Mouse: para manejar el movimiento de las particulas, y dirigir el curso del caos.  
+> Camara (no creo utilizarla pero si lo logro la usare): Para generar reflejos, destruir particulas o moverlas caoticamente.  
 4. ¿Qué algoritmos o técnicas planeas usar (ej: flow fields, flocking, física, partículas, etc.) y por qué?
+> Sistema de partículas: Para representar los dulces y elementos volando. Se comportan de forma caótica y responden al audio  
+> Flow fields (campos vectoriales): Para dar dirección orgánica al caos. Muestran que hay reglas invisibles detrás del desorden  
+> Flocking (comportamiento tipo boids): Para crear agrupaciones de caramelos/criaturas. Simboliza el balance entre libertad y necesidad de orden  
+> Simulación de física (Foces): Gravedad, colisiones y rebotes. Hace que los dulces se sientan más reales y pesados o ligeros según el mood  
+> Noise (Perlin o Simplex Noise): Para distorsiones y movimiento ondulante. Aporta esa sensación de inestabilidad emocional del mundo
 5. Tus bocetos y una explicación de cómo los inputs influirán en los visuales.
 
 
@@ -28,5 +39,6 @@ Capturas de pantalla mostrando tu pieza en acción.
 
 
 ## Defensa nota
+
 
 
