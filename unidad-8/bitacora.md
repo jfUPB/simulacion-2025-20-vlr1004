@@ -26,6 +26,7 @@
 > Simulación de física (Foces): Gravedad, colisiones y rebotes. Hace que los dulces se sientan más reales y pesados o ligeros según el mood  
 > Noise (Perlin o Simplex Noise): Para distorsiones y movimiento ondulante. Aporta esa sensación de inestabilidad emocional del mundo
 5. Tus bocetos y una explicación de cómo los inputs influirán en los visuales.
+> <img width="947" height="707" alt="image" src="https://github.com/user-attachments/assets/b5f1965f-a1a1-4947-ae8a-1b0fc6ee755c" />
 
 
 # Actividad 3
@@ -34,11 +35,12 @@ Un enlace a tu sketch en el editor de p5.js.
 Capturas de pantalla mostrando tu pieza en acción.
 
 
-#Evidencias
+# Evidencias
 ## Nota propuesta
 
 
 ## Defensa nota
+
 
 
 
