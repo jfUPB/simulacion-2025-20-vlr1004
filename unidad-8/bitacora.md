@@ -466,14 +466,43 @@ function windowResized() {
 2. Un enlace a tu sketch en el editor de p5.js.
 > [https://editor.p5js.org/vlr1004/sketches/KOJwGeSFo](https://editor.p5js.org/vlr1004/sketches/q0rjRAT6y)
 3. Capturas de pantalla mostrando tu pieza en acción.
-
+> <img width="1179" height="772" alt="image" src="https://github.com/user-attachments/assets/043b90dc-9a70-4cc3-8182-34aa275e4e86" />
+> https://youtu.be/YiMhSADZZEw
 
 # Evidencias
 ## Nota propuesta
-
+5
 
 ## Defensa nota
 
+1. Creación de la obra generativa
+
+Defensa:
+Desarrollé una pieza interactiva en p5.js inspirada en el concepto visual y emocional de DPR IAN, fusionando lo caótico con lo dulce y colorido. Implementé sistemas de partículas, un campo de flujo (flow field), y elementos de comportamiento tipo boid para representar el contraste entre el orden y el caos.
+El proyecto es completamente funcional, permite subir una canción MP3, analiza el sonido en tiempo real y reacciona visualmente a las frecuencias. Además, incluye controles de usuario (teclas, mouse, y botones) para manipular el nivel de caos durante la interpretación en vivo.
+Mostré autonomía técnica y conceptual, combinando lo aprendido con una propuesta estética coherente al tema.
+
+2. Interacción en tiempo real y control del sonido
+
+Defensa:
+Logré implementar correctamente la lectura de audio en vivo, el análisis de frecuencias con FFT, y la sincronización visual con la música. Solucioné los problemas técnicos de reproducción (como el bloqueo de audio en navegadores modernos) y adapté la interfaz para un uso fluido durante la performance.
+El comportamiento de los elementos responde de manera orgánica al ritmo, logrando una experiencia visual inmersiva y dinámica.
+
+3. Coherencia estética y conceptual
+
+Defensa:
+El mundo caótico lleno de dulces representa el universo emocional de DPR IAN, donde los colores brillantes y las formas juguetonas contrastan con la oscuridad y la distorsión.
+Reflexioné sobre la dualidad “orden/caos” no solo desde la imagen, sino también desde la estructura del código, alternando entre comportamientos regulares y aleatorios según la energía del sonido.
+El resultado es un entorno visual coherente con el concepto, sensible al ritmo y con un carácter propio.
+
+4. Documentación y proceso creativo
+
+Defensa:
+Registré el proceso de experimentación, ajustes técnicos y decisiones conceptuales en mi bitácora, explicando cómo cada cambio aportó al resultado final. Documenté tanto los avances técnicos como los fallos que sirvieron de aprendizaje, mostrando evolución y comprensión del lenguaje generativo.
+
+Conclusión:
+
+Propongo una nota de 5 por el cumplimiento completo de los objetivos técnicos, estéticos y conceptuales. Hubo experimentación, iteración y reflexión crítica durante todo el proceso. Solo restarían pequeños ajustes visuales y de rendimiento para llevarlo a nivel de presentación profesional.
 
 
 
