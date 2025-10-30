@@ -31,7 +31,12 @@
 
 # Actividad 3
 1. El código fuente completo de tu sketch en p5.js.
+> html
+
+>Sketch
+
 2. Un enlace a tu sketch en el editor de p5.js.
+> https://editor.p5js.org/vlr1004/sketches/KOJwGeSFo
 3. Capturas de pantalla mostrando tu pieza en acción.
 
 
@@ -40,6 +45,7 @@
 
 
 ## Defensa nota
+
 
 
 
